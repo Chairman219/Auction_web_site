@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def hlavni_stranka(request):
+    return render(request, 'hlavni_stranka.html')
