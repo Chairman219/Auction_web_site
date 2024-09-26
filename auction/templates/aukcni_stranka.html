@@ -1,0 +1,42 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}{{ aukce.nazev }}{% endblock %}
+
+{% block content %}
+    <h1>{{ aukce.nazev }}</h1>
+    <p>{{ aukce.popis }}</p>
+
+    {% if request.user == aukce.user or request.user.is_superuser %}
+    <a href="{% url 'smazat_aukci' aukce.id %}" class="btn btn-danger">Smazat aukci</a>
+{% endif %}
+
+    <h2>Přihazování</h2>
+  <form method="post" action="{% url 'aukcni_stranka' aukce.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Přihodit</button>
+</form>
+
+    <h2>Přihazování</h2>
+    <ul>
+        {% for bid in bids %}
+            <li>{{ bid.uzivatel.username }} přihodil {{ bid.castka }} Kč</li>
+        {% empty %}
+            <li>Žádné nabídky zatím.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'hlavni_stranka' %}">Zpět na hlavní stránku</a>
+    <a href="{% url 'seznam_aukci' %}">Zpět na seznam aukcí</a>
+</body>
+</html>
+
+<h2>Přihazování</h2>
+<ul>
+    {% for bid in bids %}
+        <li>{{ bid.uzivatel.username }} přihodil {{ bid.castka }} Kč</li>
+    {% empty %}
+        <li>Žádné nabídky zatím.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}Vytvořit kategorii{% endblock %}
+
+{% block content %}
+    <h1>Vytvořit kategorii</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Vytvořit</button>
+    </form>
+    <a href="{% url 'seznam_kategorii' %}" class="btn btn-secondary">Zpět na seznam kategorií</a>
+{% endblock %}

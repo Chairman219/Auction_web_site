@@ -1,0 +1,19 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}Aukce v kategorií{% endblock %}
+
+{% block content %}
+    <h1>Aukce v kategorii {{ kategorie.nazev }}</h1>
+    <ul>
+        {% for aukce in aukce %}
+            <li>
+                <h2>{{ aukce.nazev }}</h2>
+                <p>{{ aukce.popis }}</p>
+                <p>Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč</p>
+                <a href="{% url 'aukcni_stranka' aukce.id %}">Detail aukce</a>
+            </li>
+        {% empty %}
+            <li>V této kategorii nejsou žádné aukce.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -3,6 +3,7 @@ Auction web
 # Final_Project_SDA
 Auction web
 
+superuser: admin/admin
 
 ZÁKLADNÍ SEZNAM ÚKOLŮ: 
 

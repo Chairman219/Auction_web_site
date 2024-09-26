@@ -1,0 +1,20 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}Seznam kategorií{% endblock %}
+
+{% block content %}
+    <h1>Seznam kategorií</h1>
+    <ul>
+        {% for kategorie in kategorie %}
+            <li>
+                <a href="{% url 'aukce_v_kategorii' kategorie.id %}">{{ kategorie.nazev }}</a>
+            </li>
+        {% empty %}
+            <li>Žádné kategorie k dispozici.</li>
+        {% endfor %}
+    </ul>
+
+    {% if perms.auction.muze_vytvorit_kategorii %}
+        <a href="{% url 'vytvorit_kategorii' %}" class="btn btn-primary">Vytvořit kategorii</a>
+    {% endif %}
+{% endblock %}

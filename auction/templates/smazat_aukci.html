@@ -1,0 +1,14 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}Smazat aukci{% endblock %}
+
+{% block content %}
+    <h1>Smazat aukci</h1>
+    <p>Opravdu chcete smazat aukci "{{ object.nazev }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Ano, smazat</button>
+        <a href="{% url 'aukcni_stranka' object.id %}" class="btn btn-secondary">Ne, vrátit zpět</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}Vytvořit novou aukci{% endblock %}
+
+{% block content %}
+    <h1>Vytvořit novou aukci</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Vytvořit aukci</button>
+    </form>
+    <a href="{% url 'seznam_aukci' %}" class="btn btn-secondary">Zpět na seznam aukcí</a>
+{% endblock %}

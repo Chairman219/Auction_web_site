@@ -1,0 +1,13 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}{{ aukce.nazev }}{% endblock %}
+
+{% block content %}
+    <h1>Přihazování na {{ aukce.nazev }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Přihodit</button>
+    </form>
+    <a href="{% url "aukcni_stranka" aukce_id %}">Zpět na aukci</a>
+{% endblock %}

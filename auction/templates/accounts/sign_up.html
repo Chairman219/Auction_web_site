@@ -1,0 +1,10 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block content %}
+    <h1>Registration</h1>
+  <form method="post">
+    {% csrf_token %}
+    <table>{{ form }}</table>
+    <input type="submit" value="Submit" style="background-color: #343a40; color: white; border-radius: 5px">
+  </form>
+{% endblock %}

@@ -1,54 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="" />
+    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: vytvořen náhled hlavní stránky">
+      <change afterPath="$PROJECT_DIR$/auction/templates/accounts/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auction/templates/aukce_v_kategorii.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auction/templates/aukcni_stranka.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auction/templates/form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auction/templates/prihazovani.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auction/templates/seznam_aukci.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auction/templates/seznam_kategorii.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aukce/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Final_Project_SDA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Final_Project_SDA.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aukce/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/aukce/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aukce/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aukce/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feature_main_page" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Chairman219"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Chairman219&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Chairman219/Final_Project_SDA.git",
-    "accountId": "a8f22ae0-381d-4b88-aa7d-58cb08ad32ac"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Chairman219/Final_Project_SDA.git&quot;,
+    &quot;accountId&quot;: &quot;a8f22ae0-381d-4b88-aa7d-58cb08ad32ac&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2mWhBj73NhvNNWY2dGeEmjThRJH" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature__inicializace__djanga",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.views.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\okay\PycharmProjects\Final_Project_SDA\auction" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -66,7 +103,32 @@
       <option name="presentableId" value="Default" />
       <updated>1727198107595</updated>
       <workItem from="1727198110427" duration="308000" />
+      <workItem from="1727202593982" duration="1254000" />
+      <workItem from="1727203859000" duration="88000" />
+      <workItem from="1727204137225" duration="119000" />
+      <workItem from="1727248702967" duration="22000" />
+      <workItem from="1727248776915" duration="9006000" />
+      <workItem from="1727280617247" duration="4250000" />
+      <workItem from="1727284885435" duration="4853000" />
+      <workItem from="1727354336397" duration="2201000" />
     </task>
+    <task id="LOCAL-00001" summary="doc: README.md - add seznam úkolů">
+      <option name="closed" value="true" />
+      <created>1727202670349</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727202670349</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: vytvořen náhled hlavní stránky">
+      <option name="closed" value="true" />
+      <created>1727251616321</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727251616321</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,5 +156,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="doc: README.md - add seznam úkolů" />
+    <MESSAGE value="feat: vytvořen náhled hlavní stránky" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: vytvořen náhled hlavní stránky" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/manage_py$views.coverage" NAME="views Coverage Results" MODIFIED="1727284408992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/auction" />
   </component>
 </project>

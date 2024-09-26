@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-)xemqt3oqzqjgy=tf*7o)wli3g-bmxfn8m!x2b8x6cm#h)o9el
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_REDIRECT_URL = "hlavni_stranka"
+LOGOUT_REDIRECT_URL = "login"
 
 
 # Application definition
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'aukce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

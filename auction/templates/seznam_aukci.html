@@ -1,0 +1,21 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}Seznam aktivních aukcí{% endblock %}
+
+{% block content %}
+    <h1>Aktivní aukce</h1>
+    <ul>
+        {% for aukce in aktivni_aukce %}
+            <li>
+                <h2>{{ aukce.nazev }}</h2>
+                <p>{{ aukce.popis }}</p>
+                <p>Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč</p>
+                <p>Datum začátku: {{ aukce.datum_zacatku }}</p>
+                <p>Datum konce: {{ aukce.datum_konce }}</p>
+            </li>
+        <a href="{% url 'aukcni_stranka' aukce.id %}">Detail aukce</a>
+        {% empty %}
+            <li>Žádné aktivní aukce zatím.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
