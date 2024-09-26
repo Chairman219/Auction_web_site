@@ -2,17 +2,19 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 
-from auction.models import Bid, Aukce
+from auction.models import Bid, Aukce, CustomUser
 
 class SignUpForm(UserCreationForm):
-
-  class Meta(UserCreationForm.Meta):
-    fields = ["username", "first_name"]
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = ["username", "first_name", "last_name", "email", "mesto", "adresa", "typ_uctu"]
 
     def save(self, commit=True):
-      self.instance.is_active = False # výběr toho zda jsou nově vytvořené účty uživatelů ihned aktivní nebo ne, False = ne True = ano
-      return super().save(commit)
-
+        user = super().save(commit=False)
+        user.is_active = False
+        if commit:
+            user.save()
+        return user
 class BidForm(ModelForm):
     class Meta:
         model = Bid

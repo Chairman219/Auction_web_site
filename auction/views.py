@@ -10,8 +10,8 @@ from aukce.forms import BidForm, SignUpForm, AukceForm
 
 
 class SignUpView(CreateView):
-    template_name = "accounts/sign_up.html"
     form_class = SignUpForm
+    template_name = "accounts/sign_up.html"
     success_url = reverse_lazy("hlavni_stranka")
 
 
