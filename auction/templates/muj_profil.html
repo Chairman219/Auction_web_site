@@ -1,0 +1,24 @@
+{% extends 'hlavni_stranka.html' %}
+
+{% block content %}
+<h1>Můj profil</h1>
+
+<h2>Informace o uživateli</h2>
+<p><strong>Uživatelské jméno:</strong> {{ user.username }}</p>
+<p><strong>Viditelné jméno:</strong> {{ profile.visible_username }}</p>
+<p><strong>Město:</strong> {{ profile.city }}</p>
+<p><strong>Adresa:</strong> {{ profile.address }}</p>
+<p><strong>Typ účtu:</strong> {{ profile.account_type }}</p>
+
+<h2>Moje aktivní aukce</h2>
+<ul>
+    {% for aukce in aukce %}
+    <li>
+        <a href="{% url 'aukcni_stranka' aukce.id %}">{{ aukce.nazev }}</a> - {{ aukce.popis }}
+    </li>
+    {% empty %}
+    <p>Nemáte žádné aktivní aukce.</p>
+    {% endfor %}
+</ul>
+
+{% endblock %}

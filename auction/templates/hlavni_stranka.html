@@ -44,7 +44,7 @@
                                 {{ request.user.username }}
                             </button>
                                 <ul class="dropdown-menu" style="position: absolute; left: 700px;">
-                                    <li><a class="dropdown-item">My Page</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'muj_profil' %}">Můj Profil</a></li>
                                     <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                                     <li><a class="dropdown-item" href="{% url 'vytvor_aukci' %}">Vytvořit aukci</a>
 </li>

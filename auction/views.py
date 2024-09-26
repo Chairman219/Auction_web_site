@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -27,6 +28,15 @@ class SubmittablePasswordResetView(PasswordResetView):
     template_name = "accounts/reset_password.html"
 
 
+def muj_profil(request):
+    user = request.user
+
+    aukce = Aukce.objects.filter(user=user, is_active=True)
+
+    return render(
+        request, template_name="muj_profil.html",
+        context={'aukce': aukce}
+    )
 
 def hlavni_stranka(request):
     return render(request, 'hlavni_stranka.html')

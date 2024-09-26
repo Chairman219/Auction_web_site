@@ -18,7 +18,7 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView,
 from django.urls import path
 from auction.views import VytvorAukciView, hlavni_stranka, SeznamAukciView, aukcni_stranka, seznam_kategorii, \
     aukce_v_kategorii, SubmittableLoginView, SubmittablePasswordChangeView, SubmittablePasswordResetView, SignUpView, \
-    SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci
+    SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci, muj_profil
 
 from auction.models import Aukce, Bid, Kategorie
 
@@ -36,6 +36,7 @@ urlpatterns = [
     path('password_reset/done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('muj_profil/', muj_profil, name='muj_profil'),
     path("", hlavni_stranka, name="hlavni_stranka"),
     path('aukce/', SeznamAukciView.as_view(), name='seznam_aukci'),
     path('aukce/<int:aukce_id>/', aukcni_stranka, name='aukcni_stranka'),
