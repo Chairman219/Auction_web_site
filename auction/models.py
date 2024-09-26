@@ -4,28 +4,14 @@ from django.utils import timezone
 from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 from django.db.models import Model, TextField, ForeignKey, CASCADE, DateTimeField, DecimalField, IntegerField, \
-    BooleanField, CharField, ImageField, ManyToManyField
+    BooleanField, CharField, ImageField, ManyToManyField, OneToOneField
 
+class Profile(Model):
+    user = OneToOneField(User, on_delete=CASCADE)
 
-class CustomUser(AbstractUser):
-    mesto = CharField(max_length=100)
-    adresa = TextField()  # You can also split this into separate fields for street, house number, and postal code.
-    datum_vytvoreni_uctu = DateTimeField(default=timezone.now)
-    is_active = models.BooleanField(default=False)
-
-
-    TYP_UCTU = [
-        ('BEZNY', 'Běžný'),
-        ('PREMIUM', 'Premium'),
-    ]
-    typ_uctu = CharField(max_length=10, choices=TYP_UCTU, default='BEZNY')
-
-    groups = ManyToManyField('auth.Group',related_name='customuser_set', blank=True)
-
-    user_permissions = ManyToManyField('auth.Permission', related_name='customuser_set', blank=True)
 
     def __str__(self):
-        return self.username
+        return self.user
 
 class Kategorie(Model):
     nazev = CharField(max_length=100)

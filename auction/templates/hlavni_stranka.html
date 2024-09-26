@@ -24,7 +24,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-red bg-red" style="background-color: lightcoral">
         <div class="container fixed">
-            <h1 class="navbar-brand">SDAukce</h1>
+            <h1 class="navbar-brand"><a href="{% url 'hlavni_stranka' %}">SDAukce</a></h1>
 
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
@@ -34,7 +34,7 @@
                     <a class="nav-item nav-link active" href="{% url 'seznam_kategorii' %}">
                         Kategorie
                     </a>
-                    <a class="nav-item nav-link active">
+                    <a class="nav-item nav-link active" href="{% url 'vyhledavani_aukci' %}">
                         Hledat
                     </a>
 

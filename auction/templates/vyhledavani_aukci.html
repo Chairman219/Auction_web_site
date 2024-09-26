@@ -1,0 +1,18 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block content %}
+<h1>Vyhledávání aukcí</h1>
+<form method="get">
+    {{ form.as_table }}
+    <input type="submit" value="Hledat" style="background-color: #343a40; color: white; border-radius: 5px">
+</form>
+
+<h2>Výsledky vyhledávání:</h2>
+<ul>
+    {% for aukce in aukce %}
+        <li>{{ aukce.nazev }} - {{ aukce.kategorie.nazev }} - Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč</li>
+    {% empty %}
+        <li>Žádné aukce nebyly nalezeny.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

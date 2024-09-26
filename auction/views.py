@@ -1,12 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, DeleteView
+from platformdirs import user_log_path
 
-from auction.models import Aukce, Kategorie, Bid
-from aukce.forms import BidForm, SignUpForm, AukceForm
+from auction.models import Aukce, Kategorie, Bid, Profile
+from aukce.forms import BidForm, SignUpForm, AukceForm, AuctionSearchForm
 
 
 class SignUpView(CreateView):
@@ -91,3 +93,27 @@ class SmazatAukciView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         aukce = self.get_object()
         # Aukci může smazat pouze uživatel který ji vytvořil nebo admin,
         return self.request.user == aukce.user or self.request.user.is_superuser
+
+def vyhledavani_aukci(request):
+    form = AuctionSearchForm(request.GET or None)
+    aukce = Aukce.objects.none()  # Prázdný queryset
+
+    if form.is_valid():
+        nazev = form.cleaned_data.get('nazev')
+        kategorie = form.cleaned_data.get('kategorie')
+        minimalni_prihoz = form.cleaned_data.get('minimalni_prihoz')
+        datum_zacatku = form.cleaned_data.get('datum_zacatku')
+
+        # Vytvoření základního querysetu
+        aukce = Aukce.objects.all()  # Získá všechny aukce
+
+        if nazev:
+            aukce = aukce.filter(nazev__icontains=nazev)
+        if kategorie:
+            aukce = aukce.filter(kategorie=kategorie)
+        if minimalni_prihoz:
+            aukce = aukce.filter(minimalni_prihoz__gte=minimalni_prihoz)
+        if datum_zacatku:
+            aukce = aukce.filter(datum_zacatku__gte=datum_zacatku)
+
+    return render(request, 'vyhledavani_aukci.html', {'form': form, 'aukce': aukce})
