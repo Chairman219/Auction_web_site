@@ -15,6 +15,6 @@
     </ul>
 
     {% if perms.auction.muze_vytvorit_kategorii %}
-        <a href="{% url 'vytvorit_kategorii' %}" class="btn btn-primary">Vytvořit kategorii</a>
+        <a href="{% url 'vytvorit_kategorii' %}" style="border-color: #cc0000; background-color: #cc0000; border-radius: 5px;" class="btn btn-primary">Vytvořit kategorii</a>
     {% endif %}
 {% endblock %}

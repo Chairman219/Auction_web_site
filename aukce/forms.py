@@ -8,7 +8,7 @@ from auction.models import Bid, Aukce, Profile, Kategorie
 
 class SignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
-        fields = ['username', 'first_name']
+        fields = ['username', 'first_name', 'email']
 
     @atomic
     def save(self, commit=True):
