@@ -20,10 +20,11 @@ from auction.views import VytvorAukciView, hlavni_stranka, SeznamAukciView, aukc
     aukce_v_kategorii, SubmittableLoginView, SubmittablePasswordChangeView, SubmittablePasswordResetView, \
     SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci, muj_profil, SignUpView
 
-from auction.models import Aukce, Bid, Kategorie
+from auction.models import Aukce, Bid, Kategorie, Profile
 
 admin.site.register(Aukce)
 admin.site.register(Kategorie)
+admin.site.register(Profile)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

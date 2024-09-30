@@ -3,12 +3,13 @@ from django.db.models import EmailField, SET_NULL
 from django.template.defaultfilters import default
 from django.utils import timezone
 
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import Model, TextField, ForeignKey, CASCADE, DateTimeField, DecimalField, IntegerField, \
     BooleanField, CharField, ImageField, ManyToManyField, OneToOneField
 
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
@@ -16,7 +17,7 @@ class Profile(Model):
     adress = CharField(max_length=100)
 
     def __str__(self):
-        return self.user
+        return f"{self.user.username}"
 
 
 class Kategorie(Model):

@@ -13,8 +13,8 @@ class SignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         fields = ['username', 'first_name', 'email']
 
-        city = CharField(widget=Textarea, min_length=1)
-        adress = CharField(widget=Textarea, min_length=1)
+    city = CharField(widget=Textarea, min_length=1)
+    adress = CharField(widget=Textarea, min_length=1)
 
     @atomic
     def save(self, commit=True):
