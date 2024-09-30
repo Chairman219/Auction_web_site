@@ -34,7 +34,7 @@ class SubmittablePasswordResetView(PasswordResetView):
 def muj_profil(request):
     user = request.user
 
-    aukce = Aukce.objects.filter(user=user, is_active=True)
+    aukce = Aukce.objects.filter(user=user, status='ACTIVE')
 
     vyhrane_aukce = Aukce.objects.filter(vitez=request.user)
 
@@ -58,7 +58,7 @@ class SeznamAukciView(ListView):
 
     def get_queryset(self):
         # Filtruje aukce, které jsou aktuálně aktivní (datum začátku a ukončení)
-        return Aukce.objects.filter(datum_zacatku__lte=timezone.now(), datum_ukonceni__gte=timezone.now())
+        return Aukce.objects.filter(status='ACTIVE', datum_zacatku__lte=timezone.now(), datum_ukonceni__gte=timezone.now())
 
 
 def aukcni_stranka(request, aukce_id):
@@ -71,9 +71,10 @@ def aukcni_stranka(request, aukce_id):
     if request.method == 'POST':
 
         if 'koupit_hned' in request.POST:
-            if aukce.is_active:
+            if aukce.status == 'ACTIVE':
 
-                aukce.is_active = False
+                aukce.status = 'BOUGHT'
+                aukce.vitez = request.user
                 aukce.save()
                 success_message = "Úspěšně jste zakoupili předmět."
                 return redirect('hlavni_stranka')
