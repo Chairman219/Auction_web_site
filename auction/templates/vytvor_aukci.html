@@ -7,7 +7,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Vytvořit aukci</button>
+        <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999">Vytvořit aukci</button>
     </form>
-    <a href="{% url 'seznam_aukci' %}" class="btn btn-secondary">Zpět na seznam aukcí</a>
+    <a href="{% url 'seznam_aukci' %}" class="btn btn-secondary" style="background-color: #ea9999; border-color: #cc0000; border-radius: 5px;">Zpět na seznam aukcí</a>
 {% endblock %}

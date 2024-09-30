@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Můj profil</h1>
-
+<a href="{% url 'password_change' %}">Změna hesla</a>
 <h2>Informace o uživateli</h2>
 <p><strong>Uživatelské jméno:</strong> {{ user.username }}</p>
 <p><strong>Viditelné jméno:</strong> {{ profile.visible_username }}</p>
@@ -18,6 +18,17 @@
     </li>
     {% empty %}
     <p>Nemáte žádné aktivní aukce.</p>
+    {% endfor %}
+</ul>
+
+<h2>Aukce, které jsem vyhrál</h2>
+<ul>
+    {% for aukce in vyhrane_aukce %}
+    <li>
+        <a href="{% url 'aukcni_stranka' aukce.id %}">{{ aukce.nazev }}</a>
+    </li>
+    {% empty %}
+    <p>Nevyhráli jste zatím žádnou aukci.</p>
     {% endfor %}
 </ul>
 

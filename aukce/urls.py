@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.urls import path
 from auction.views import VytvorAukciView, hlavni_stranka, SeznamAukciView, aukcni_stranka, seznam_kategorii, \
-    aukce_v_kategorii, SubmittableLoginView, SubmittablePasswordChangeView, SubmittablePasswordResetView, SignUpView, \
-    SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci, muj_profil
+    aukce_v_kategorii, SubmittableLoginView, SubmittablePasswordChangeView, SubmittablePasswordResetView, \
+    SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci, muj_profil, SignUpView
 
 from auction.models import Aukce, Bid, Kategorie
 

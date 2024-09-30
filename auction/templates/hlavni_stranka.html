@@ -53,20 +53,28 @@
                         </div>
                     {% else %}
                     <a class="nav-item nav-link active" href="{% url 'login' %}" style="margin-left: 800px; color: white">
-                        Login
+                        Přihlášení
                     </a>
-                     <a class="nav-item nav-link active" href="{% url 'sign_up' %}" style="width: 150px; color: white">
-                        Sign-up
+                     <a class="nav-item nav-link active" href="{% url 'sign_up' %}" style="width: 200px; color: white">
+                        Registrace
                     </a>
                     {% endif %}
                 </div>
             </div>
         </div>
     </nav>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div class="container">
         <div class="jumbotron" style="background-color: #ea9999;">
             <h1>Vítejte na aukční stránce SDAukce</h1>
             <p>Prosím zaregistrujte se a začněte dražit!!</p>
+<!--            Bude potřeba vytvořit novou hlavní stránku aby se toto nezobrazovalo na všech urls-->
             {% block content %}{% endblock %}
         </div>
         <img src="{% static "aukcni_kladivko.webp" %}" style="border-radius: 200px; margin-left: 500px; width="650" height="500">

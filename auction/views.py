@@ -1,3 +1,6 @@
+from lib2to3.fixes.fix_input import context
+
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.db.models import Q
@@ -7,16 +10,16 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView,
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, DeleteView
 from platformdirs import user_log_path
+from django.contrib import messages
 
-from auction.models import Aukce, Kategorie, Bid, Profile
-from aukce.forms import BidForm, SignUpForm, AukceForm, AuctionSearchForm
+from auction.models import Aukce, Kategorie, Bid
+from aukce.forms import BidForm, AukceForm, AuctionSearchForm, SignUpForm
 
 
 class SignUpView(CreateView):
     form_class = SignUpForm
     template_name = "accounts/sign_up.html"
     success_url = reverse_lazy("hlavni_stranka")
-
 
 class SubmittableLoginView(LoginView):
     template_name = 'form.html'
@@ -27,15 +30,22 @@ class SubmittablePasswordChangeView(PasswordChangeView):
 class SubmittablePasswordResetView(PasswordResetView):
     template_name = "accounts/reset_password.html"
 
-
+@login_required
 def muj_profil(request):
     user = request.user
 
     aukce = Aukce.objects.filter(user=user, is_active=True)
 
+    vyhrane_aukce = Aukce.objects.filter(vitez=request.user)
+
+    context = {
+        'profile': request.user.profile,
+        'aukce': aukce,
+        'vyhrane_aukce': vyhrane_aukce,
+    }
+
     return render(
-        request, template_name="muj_profil.html",
-        context={'aukce': aukce}
+        request, template_name="muj_profil.html", context=context
     )
 
 def hlavni_stranka(request):
@@ -47,24 +57,54 @@ class SeznamAukciView(ListView):
     context_object_name = "aktivni_aukce"
 
     def get_queryset(self):
+        # Filtruje aukce, které jsou aktuálně aktivní (datum začátku a ukončení)
         return Aukce.objects.filter(datum_zacatku__lte=timezone.now(), datum_ukonceni__gte=timezone.now())
+
 
 def aukcni_stranka(request, aukce_id):
     aukce = get_object_or_404(Aukce, id=aukce_id)
+    aukce.pocet_zobrazeni += 1
     bids = aukce.bids.all()
+    error_message = None
+    success_message = None
 
     if request.method == 'POST':
-        form = BidForm(request.POST)
-        if form.is_valid():
-            bid = form.save(commit=False)
-            bid.aukce = aukce
-            bid.uzivatel = request.user
-            bid.save()
-            return redirect("aukcni_stranka", aukce_id=aukce_id)
+
+        if 'koupit_hned' in request.POST:
+            if aukce.is_active:
+
+                aukce.is_active = False
+                aukce.save()
+                success_message = "Úspěšně jste zakoupili předmět."
+                return redirect('hlavni_stranka')
+            else:
+                error_message = "Aukce již není aktivní."
+        else:
+
+            form = BidForm(request.POST)
+            if form.is_valid():
+                bid_amount = form.cleaned_data['castka']
+                if bid_amount < aukce.minimalni_prihoz:
+                    error_message = f"Musíte přihodit alespoň {aukce.minimalni_prihoz} Kč."
+                else:
+                    bid = form.save(commit=False)
+                    bid.aukce = aukce
+                    bid.uzivatel = request.user
+                    bid.save()
+                    success_message = "Příhoz byl úspěšně zadán."
+                    return redirect("aukcni_stranka", aukce_id=aukce_id)
+            else:
+                error_message = "Nastala chyba při zpracování vašeho příhozu."
     else:
         form = BidForm()
 
-    return render(request, "aukcni_stranka.html", {'aukce': aukce, 'bids': bids, 'form': form})
+    return render(request, "aukcni_stranka.html", {
+        'aukce': aukce,
+        'bids': bids,
+        'form': form,
+        'error_message': error_message,
+        'success_message': success_message
+    })
 
 # zobrazení všech kategorií
 def seznam_kategorii(request):
@@ -113,6 +153,7 @@ def vyhledavani_aukci(request):
         kategorie = form.cleaned_data.get('kategorie')
         minimalni_prihoz = form.cleaned_data.get('minimalni_prihoz')
         datum_zacatku = form.cleaned_data.get('datum_zacatku')
+        castka_kup_ted = form.cleaned_data.get('castka_kup_ted')
 
         # Vytvoření základního querysetu
         aukce = Aukce.objects.all()  # Získá všechny aukce
@@ -125,5 +166,7 @@ def vyhledavani_aukci(request):
             aukce = aukce.filter(minimalni_prihoz__gte=minimalni_prihoz)
         if datum_zacatku:
             aukce = aukce.filter(datum_zacatku__gte=datum_zacatku)
+        if castka_kup_ted:
+            aukce = aukce.filter(castka_kup_ted__gte=castka_kup_ted)
 
     return render(request, 'vyhledavani_aukci.html', {'form': form, 'aukce': aukce})

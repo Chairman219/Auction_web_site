@@ -5,10 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: my_page">
-      <change afterPath="$PROJECT_DIR$/auction/static/basci_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/migrations/0002_alter_kategorie_options.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/migrations/0003_customuser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/migrations/0004_remove_customuser_status_uctu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/migrations/0005_alter_customuser_is_active.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/migrations/0006_profile_delete_customuser.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/auction/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/accounts/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/accounts/sign_up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/aukcni_stranka.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/aukcni_stranka.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/prihazovani.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/prihazovani.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/vyhledavani_aukci.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/vyhledavani_aukci.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/vytvor_aukci.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/vytvor_aukci.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aukce/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/aukce/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aukce/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aukce/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +80,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.general",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -100,6 +114,9 @@
       <workItem from="1727280617247" duration="4250000" />
       <workItem from="1727284885435" duration="4853000" />
       <workItem from="1727354336397" duration="2201000" />
+      <workItem from="1727442838103" duration="1960000" />
+      <workItem from="1727529480434" duration="11478000" />
+      <workItem from="1727705472718" duration="5979000" />
     </task>
     <task id="LOCAL-00001" summary="doc: README.md - add seznam úkolů">
       <option name="closed" value="true" />
@@ -117,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727251616321</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: my_page">
+      <option name="closed" value="true" />
+      <created>1727445241711</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727445241711</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +174,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="doc: README.md - add seznam úkolů" />
     <MESSAGE value="feat: vytvořen náhled hlavní stránky" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: vytvořen náhled hlavní stránky" />
+    <MESSAGE value="feat: my_page" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: my_page" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/manage_py$views.coverage" NAME="views Coverage Results" MODIFIED="1727284408992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/auction" />
