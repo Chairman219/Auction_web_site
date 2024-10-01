@@ -44,14 +44,35 @@ Uživatelský účet
 - typ (BĚŽNÝ/PREMIUM) [Nechci.]
 
 Detaily aukce 
-- název
--  popis
-  fotky (volitelné)
-  kategorie
-  minimální příhoz
-  částka Kup teď (údaj zmizí v případě, že začne aukce)
-  propagace (lze předpokládat, že s prémiovým účtem je možné propagovat např. 10 aukcí měsíčně)
-  lokalita (souhlasí s lokalitou uživatelského účtu)
-  datum začátku aukce
-  datum ukončení aukce
-  počet zobrazení (zobrazení stránky)
+- název [x]
+- popis [x]
+- fotky (volitelné) [Maybe]
+- kategorie [x]
+- minimální příhoz [x]
+- částka Kup teď (údaj zmizí v případě, že začne aukce) [x]
+- propagace (lze předpokládat, že s prémiovým účtem je možné propagovat např. 10 aukcí měsíčně) [Nechci.]
+- lokalita (souhlasí s lokalitou uživatelského účtu) [x]
+- datum začátku aukce [x]
+- datum ukončení aukce [x]
+- počet zobrazení (zobrazení stránky) [x]
+
+Přihazování
+- aukce [x]
+- uživatel [x]
+- částka k zaplacení [x]
+
+Nákup (nejvyšší příhoz nebo Kup teď)
+- aukce [x]
+- uživatel [x]
+- částka k zaplacení [x]
+
+Sledování aukce
+- aukce []
+- uživatel []
+
+Hodnocení transakce (nákupu)
+- nákup []
+- hodnocení prodejce []
+- komentář prodejce []
+- hodnocení kupujícího []
+- komentář kupujícího []
