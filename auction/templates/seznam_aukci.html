@@ -11,7 +11,7 @@
                 <h2>{{ aukce.nazev }}</h2>
                 <p>{{ aukce.popis|truncatewords:30 }}</p>
                 <p><strong>Minimální příhoz:</strong> {{ aukce.minimalni_prihoz }} Kč</p>
-                <p><strong>Datum začátku:</strong> {{ aukce.datum_zacatku }} Kč</p>
+                <p><strong>Datum začátku:</strong> {{ aukce.datum_zacatku }}</p>
                 <p><strong>Datum konce:</strong> {{ aukce.datum_ukonceni }}</p>
                 <a href="{% url 'aukcni_stranka' aukce.id %}">Detail aukce</a>
             </li>

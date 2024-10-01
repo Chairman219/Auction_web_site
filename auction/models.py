@@ -58,26 +58,21 @@ class Aukce(models.Model):
         return self.nazev
 
 
-
     def ukoncit_aukci(self):
-
         if timezone.now() > self.datum_ukonceni:
             self.is_active = False
+            self.status = 'ENDED'
+        self.save()
 
     def save(self, *args, **kwargs):
-
-        original_is_active = self.is_active
         self.ukoncit_aukci()
-
-
-        if original_is_active != self.is_active:
-            super().save(*args, **kwargs)
-        else:
-            super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def kup_hned(self, user):
         self.vitez = user
         self.status = 'BOUGHT'
+        self.is_active = False
+        self.datum_ukonceni = timezone.now()
         self.save()
 
 
