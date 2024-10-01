@@ -92,3 +92,16 @@ class Bid(Model):
     def clean(self):
         if self.castka <= 0:
             raise ValidationError('Příhoz musí být kladné číslo.')
+
+class Hodnoceni(Model):
+    aukce = ForeignKey(Aukce, on_delete=CASCADE, related_name='hodnoceni')
+    uzivatel = ForeignKey(User, on_delete=CASCADE)
+
+    rating_aukce = IntegerField(choices=[(i, i) for i in range(1, 6)])
+    rating_prodejce = IntegerField(choices=[(i, i) for i in range(1, 6)])
+    komentar_prodejce = TextField(blank=True, null=True)
+    rating_kupujiciho = IntegerField(choices=[(i, i) for i in range(1, 6)])
+    komentar_kupujiciho = TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Hodnocení pro aukci: {self.aukce.nazev} od uživatel {self.uzivatel.username}"

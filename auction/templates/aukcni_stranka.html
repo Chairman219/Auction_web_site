@@ -71,7 +71,29 @@
     {% endfor %}
 </ul>
 
+<h2>Hodnocení aukce</h2>
+<ul>
+    {% for rating in aukce.hodnoceni.all %}
+        <li>
+            <strong>Uživatel:</strong> {{ rating.uzivatel.username }} -
+            <strong>Hodnocení aukce:</strong> {{ rating.rating_aukce }} -
+            <strong>Hodnocení prodejce:</strong> {{ rating.rating_prodejce }}<br>
+            <strong>Komentář prodejce:</strong> {{ rating.komentar_prodejce }}<br>
+            <strong>Hodnocení kupujícího:</strong> {{ rating.rating_kupujiciho }} -
+            <strong>Komentář kupujícího:</strong> {{ rating.komentar_kupujiciho }}
+        </li>
+    {% empty %}
+        <li>Žádná hodnocení zatím.</li>
+    {% endfor %}
+</ul>
+<div>
+{% if request.user or request.user.is_superuser %}
+<a href="{% url 'hodnotit_aukci' aukce.id %}"><button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999; margin-bottom: 50px">Přidat hodnocení</button></a>
+{% endif %}
+</div>
+
+<div>
 <a href="{% url 'hlavni_stranka' %}">Zpět na hlavní stránku</a>
 <a href="{% url 'seznam_aukci' %}">Zpět na seznam aukcí</a>
-
+</div>
 {% endblock %}

@@ -13,7 +13,7 @@ from platformdirs import user_log_path
 from django.contrib import messages
 
 from auction.models import Aukce, Kategorie, Bid
-from aukce.forms import BidForm, AukceForm, AuctionSearchForm, SignUpForm
+from aukce.forms import BidForm, AukceForm, AuctionSearchForm, SignUpForm, HodnoceniForm
 
 
 class SignUpView(CreateView):
@@ -118,6 +118,24 @@ def aukce_v_kategorii(request, kategorie_id):
     kategorie = get_object_or_404(Kategorie, id=kategorie_id)
     aukce_v_kategorii = Aukce.objects.filter(kategorie=kategorie)
     return render(request, 'aukce_v_kategorii.html', {'aukce': aukce_v_kategorii, 'kategorie': kategorie})
+
+@login_required
+def ohodnotit_aukci(request, aukce_id):
+    aukce = get_object_or_404(Aukce, id=aukce_id)
+
+    if request.method == 'POST':
+        form = HodnoceniForm(request.POST)
+        if form.is_valid():
+            hodnoceni = form.save(commit=False)
+            hodnoceni.aukce = aukce
+            hodnoceni.uzivatel = request.user
+            hodnoceni.save()
+            return redirect('aukcni_stranka', aukce_id=aukce_id)
+    else:
+        form = HodnoceniForm()
+
+    return render(request, 'hodnotit_aukci.html', {'form': form, 'aukce': aukce})
+
 
 class VytvoritKategoriiView(PermissionRequiredMixin, CreateView):
     model = Kategorie
