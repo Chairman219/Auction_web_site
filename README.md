@@ -71,8 +71,8 @@ Sledování aukce
 - uživatel []
 
 Hodnocení transakce (nákupu)
-- nákup []
-- hodnocení prodejce []
-- komentář prodejce []
-- hodnocení kupujícího []
-- komentář kupujícího []
+- nákup [x]
+- hodnocení prodejce [x]
+- komentář prodejce [x]
+- hodnocení kupujícího [x]
+- komentář kupujícího [x]

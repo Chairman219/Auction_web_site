@@ -88,7 +88,7 @@
 </ul>
 <div>
 {% if request.user or request.user.is_superuser %}
-<a href="{% url 'hodnotit_aukci' aukce.id %}"><button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999; margin-bottom: 50px">Přidat hodnocení</button></a>
+<a href="{% url 'hodnotit_aukci' aukce.id %}"><button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999; margin-bottom: 50px">Přidat hodnocení a komentář</button></a>
 {% endif %}
 </div>
 
