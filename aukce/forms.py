@@ -5,7 +5,7 @@ from django.db.transaction import atomic
 from django.forms import ModelForm, Form, ModelChoiceField, DateField, DecimalField
 from django.forms import CharField
 
-from auction.models import Bid, Aukce, Kategorie, Profile
+from auction.models import Bid, Aukce, Kategorie, Profile, Hodnoceni
 
 
 class SignUpForm(UserCreationForm):
@@ -44,3 +44,8 @@ class AuctionSearchForm(Form):
     minimalni_prihoz = DecimalField(required=False, min_value=0)
     castka_kup_ted = DecimalField(required=False, min_value=0)
     datum_zacatku = DateField(required=False)
+
+class HodnoceniForm(ModelForm):
+    class Meta:
+        model = Hodnoceni
+        fields = ['rating_aukce', 'rating_prodejce', 'komentar_prodejce', 'rating_kupujiciho', 'komentar_kupujiciho']

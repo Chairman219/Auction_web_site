@@ -1,0 +1,11 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block content %}
+<h1>Hodnotit aukci: {{ aukce.nazev }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999">Odeslat hodnocení</button>
+</form>
+<a href="{% url 'aukcni_stranka' aukce.id %}">Zpět na detail aukce</a>
+{% endblock %}
