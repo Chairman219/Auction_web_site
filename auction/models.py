@@ -14,7 +14,7 @@ User = get_user_model()
 class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
     city = CharField(max_length=100)
-    adress = CharField(max_length=100)
+    address = CharField(max_length=100)
 
     def __str__(self):
         return f"{self.user.username}"
@@ -62,11 +62,14 @@ class Aukce(models.Model):
         if timezone.now() > self.datum_ukonceni:
             self.is_active = False
             self.status = 'ENDED'
-        self.save()
+
 
     def save(self, *args, **kwargs):
-        self.ukoncit_aukci()
+        if self.status == 'ACTIVE':
+            self.ukoncit_aukci()
+
         super().save(*args, **kwargs)
+
 
     def kup_hned(self, user):
         self.vitez = user

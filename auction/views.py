@@ -64,24 +64,25 @@ class SeznamAukciView(ListView):
 def aukcni_stranka(request, aukce_id):
     aukce = get_object_or_404(Aukce, id=aukce_id)
     aukce.pocet_zobrazeni += 1
+    aukce.save()
+
     bids = aukce.bids.all()
     error_message = None
     success_message = None
 
-    if request.method == 'POST':
+    if aukce.status == 'ENDED':
+        error_message = "Aukce již byla ukončena"
 
+    elif request.method == 'POST':
         if 'koupit_hned' in request.POST:
             if aukce.status == 'ACTIVE':
-
-                aukce.status = 'BOUGHT'
-                aukce.vitez = request.user
-                aukce.save()
+                aukce.kup_hned(request.user)
                 success_message = "Úspěšně jste zakoupili předmět."
-                return redirect('hlavni_stranka')
+                return redirect('muj_profil')
             else:
                 error_message = "Aukce již není aktivní."
-        else:
 
+        else:
             form = BidForm(request.POST)
             if form.is_valid():
                 bid_amount = form.cleaned_data['castka']
@@ -92,19 +93,19 @@ def aukcni_stranka(request, aukce_id):
                     bid.aukce = aukce
                     bid.uzivatel = request.user
                     bid.save()
-                    success_message = "Příhoz byl úspěšně zadán."
+                    success_message = "Přihoz byl úspěšně zadán"
                     return redirect("aukcni_stranka", aukce_id=aukce_id)
             else:
                 error_message = "Nastala chyba při zpracování vašeho příhozu."
     else:
         form = BidForm()
 
-    return render(request, "aukcni_stranka.html", {
+    return render(request, 'aukcni_stranka.html', {
         'aukce': aukce,
         'bids': bids,
         'form': form,
         'error_message': error_message,
-        'success_message': success_message
+        'success_message': success_message,
     })
 
 # zobrazení všech kategorií
@@ -133,6 +134,7 @@ class VytvorAukciView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.lokalita = self.request.user.profile.city
         return super().form_valid(form)
 
 class SmazatAukciView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):

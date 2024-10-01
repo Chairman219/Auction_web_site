@@ -7,6 +7,7 @@
 <p><strong>Uživatelské jméno:</strong> {{ user.username }}</p>
 <p><strong>Město:</strong> {{ profile.city }}</p>
 <p><strong>Adresa:</strong> {{ profile.address }}</p>
+<p style="margin-left: 750px"><strong>Datum vytvoření účtu:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
 
 <h2>Moje aktivní aukce</h2>
 <ul>
@@ -29,5 +30,13 @@
     <p>Nevyhráli jste zatím žádnou aukci.</p>
     {% endfor %}
 </ul>
+
+<p style="margin-left: 750px"><strong>Status účtu:</strong>
+    {% if user.is_active %}
+        Aktivní
+    {% else %}
+        Neaktivní
+    {% endif %}
+</p>
 
 {% endblock %}

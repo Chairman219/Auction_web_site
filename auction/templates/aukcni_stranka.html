@@ -5,65 +5,73 @@
 {% block content %}
 
 {% if request.user == aukce.user or request.user.is_superuser %}
-<a href="{% url 'smazat_aukci' aukce.id %}"><button style="background-color: #cc0000; color: white; border-color: #ea9999">Smazat aukci</button></a>
-       {% endif %}
+<a href="{% url 'smazat_aukci' aukce.id %}">
+    <button style="background-color: #cc0000; color: white; border-color: #ea9999">Smazat aukci</button>
+</a>
+{% endif %}
+
+<h1>{{ aukce.nazev }}</h1>
+<h4>Vytvořil uživatel: {{ aukce.user.username }}</h4>
+<p>Popis: {{ aukce.popis }}</p>
+<p>Zahájení: {{ aukce.datum_zacatku }}</p>
+<p>Ukončení: {{ aukce.datum_ukonceni }}</p>
+
+{% if aukce.is_active %}
+    <p>Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč</p>
+    <p>Kategorie: {{ aukce.kategorie.nazev }}</p>
+    <p>Částka kup teď: {{ aukce.castka_kup_ted }} Kč</p>
+    <p>Lokalita: {{ aukce.lokalita }}</p>
+    <p>Počet zobrazení: {{ aukce.pocet_zobrazeni }}</p>
 
 
-    <h1>{{ aukce.nazev }}</h1>
-    <p>{{ aukce.popis }}</p>
-    <p>Zahájení: {{ aukce.datum_zacatku }}</p>
-    <p>Ukončení: {{ aukce.datum_ukonceni }}</p>
+    {% if request.user.is_authenticated %}
+        <h2>Přihazování</h2>
+        <form method="post" action="{% url 'aukcni_stranka' aukce.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999">Přihodit</button>
+        </form>
 
-    {% if aukce.is_active %}
-        <p>Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč</p>
-        <p>Kategorie: {{ aukce.kategorie.nazev }}</p>
-        <p>Částka kup teď: {{ aukce.castka_kup_ted }} Kč</p>
-        <p>Lokalita: {{ aukce.lokalita }}</p>
-        <p>Počet zobrazení: {{ aukce.pocet_zobrazeni }}</p>
-        <p>Uživatel: {{ aukce.user.username }}</p>
-
-        {% if request.user.is_authenticated %}
-            <h2>Přihazování</h2>
-            <form method="post" action="{% url 'aukcni_stranka' aukce.id %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-
-                <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999">Přihodit</button>
-            </form>
-
-
-            {% if aukce.is_active and aukce.castka_kup_ted > 0 %}
-            <form method="post" action="{% url 'aukcni_stranka' aukce.id %}">
-                {% csrf_token %}
-                <button type="submit" name="koupit_hned" class="btn btn-success">Koupit hned za {{ aukce.castka_kup_ted }} Kč</button>
-            </form>
-            {% endif %}
-        {% else %}
-            <p>Chcete-li přihodit, prosím <a href="{% url 'login' %}">Přihlaste se</a>.</p>
+        {% if aukce.is_active and aukce.castka_kup_ted > 0 %}
+        <form method="post" action="{% url 'aukcni_stranka' aukce.id %}">
+            {% csrf_token %}
+            <button type="submit" name="koupit_hned" class="btn btn-success">Koupit hned za {{ aukce.castka_kup_ted }} Kč</button>
+        </form>
         {% endif %}
-
-        <!-- Error and success messages -->
-        {% if error_message %}
-            <p style="color:red;">{{ error_message }}</p>
-        {% endif %}
-
-        {% if success_message %}
-            <p style="color:green;">{{ success_message }}</p>
-        {% endif %}
-
     {% else %}
-        <p style="color:red;">Tato aukce již není aktivní.</p>
+        <p>Chcete-li přihodit, prosím <a href="{% url 'login' %}">Přihlaste se</a>.</p>
     {% endif %}
 
-    <h2>Poslední příhozy</h2>
-    <ul>
-        {% for bid in bids %}
-            <li>{{ bid.uzivatel.username }}: přihodil {{ bid.castka }} Kč</li>
-        {% empty %}
-            <li>Žádné nabídky zatím.</li>
-        {% endfor %}
-    </ul>
+    <!-- Error and success messages -->
+    {% if error_message %}
+        <p style="color:red;">{{ error_message }}</p>
+    {% endif %}
 
-    <a href="{% url 'hlavni_stranka' %}">Zpět na hlavní stránku</a>
-    <a href="{% url 'seznam_aukci' %}">Zpět na seznam aukcí</a>
+    {% if success_message %}
+        <p style="color:green;">{{ success_message }}</p>
+    {% endif %}
+
+{% else %}
+    <!-- Aukce není aktivní -->
+    <p style="color:red;">Tato aukce již není aktivní.</p>
+
+    {% if aukce.status == 'BOUGHT' %}
+        <p style="color:green;">Tuto aukci vyhrál uživatel {{ aukce.vitez.username }} pomocí "Kup hned".</p>
+    {% elif aukce.vitez %}
+        <p style="color:green;">Tuto aukci vyhrál uživatel {{ aukce.vitez.username }}.</p>
+    {% endif %}
+{% endif %}
+
+<h2>Poslední příhozy</h2>
+<ul>
+    {% for bid in bids %}
+        <li>{{ bid.uzivatel.username }}: přihodil {{ bid.castka }} Kč</li>
+    {% empty %}
+        <li>Žádné nabídky zatím.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'hlavni_stranka' %}">Zpět na hlavní stránku</a>
+<a href="{% url 'seznam_aukci' %}">Zpět na seznam aukcí</a>
+
 {% endblock %}
