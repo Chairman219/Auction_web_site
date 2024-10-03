@@ -149,6 +149,12 @@ class VytvoritKategoriiView(PermissionRequiredMixin, CreateView):
     success_url = reverse_lazy('seznam_kategorii')
     permission_required = 'auction.muze_vytvorit_kategorii'
 
+class SmazatKategoriiView(PermissionRequiredMixin, DeleteView):
+    model = Kategorie
+    template_name = 'smazat_kategorii.html'
+    success_url = reverse_lazy('seznam_kategorii')
+    permission_required = 'auction.delete_kategorie'
+
 class VytvorAukciView(LoginRequiredMixin, CreateView):
     model = Aukce
     form_class = AukceForm

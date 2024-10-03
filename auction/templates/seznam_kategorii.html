@@ -4,15 +4,33 @@
 
 {% block content %}
     <h1>Seznam kategorií</h1>
-    <ul>
+    <div class="row">
         {% for kategorie in kategorie %}
-            <li>
-                <a href="{% url 'aukce_v_kategorii' kategorie.id %}">{{ kategorie.nazev }}</a>
-            </li>
+            <div class="col-md-6">
+                <div class="card mb-4" style="background-color: #ea9999; border-color: #cc0000;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'aukce_v_kategorii' kategorie.id %}">{{ kategorie.nazev }}</a>
+                        </h5>
+
+                        {% if perms.auction.delete_kategorie %}
+                            <a href="{% url 'smazat_kategorii' kategorie.id %}" type="submit" onclick="return confirm('Opravdu chcete smazat tuto kategorii?');">
+                                <button style="background-color: #cc0000; border-color: #ea9999; border-radius: 10px; color: white;">
+                                Smazat
+                                </button>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% if forloop.counter|divisibleby:2 %}
+                </div><div class="row">
+            {% endif %}
         {% empty %}
-            <li>Žádné kategorie k dispozici.</li>
+            <p>Žádné kategorie k dispozici.</p>
         {% endfor %}
-    </ul>
+    </div>
 
     {% if perms.auction.muze_vytvorit_kategorii %}
         <a href="{% url 'vytvorit_kategorii' %}" style="border-color: #cc0000; background-color: #cc0000; border-radius: 5px;" class="btn btn-primary">Vytvořit kategorii</a>

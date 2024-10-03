@@ -3,7 +3,7 @@
 <html {% if LANGUAGE_CODE %}lang="{{ LANGUAGE_CODE }}" {% endif %}>
 
 <head>
-    <link rel="stylesheet" href="{% static 'basic_style.css' %}">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SDAukce</title>
@@ -40,11 +40,11 @@
                     </a>
 
                     {% if request.user.is_authenticated %}
-                        <div class="dropdown" style="position: relative;">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="background-color: #ea9999; position: absolute; left: 700px; border-color: #cc0000">
+                        <div class="navbar-nav ml-auto">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="background-color: #ea9999; border-color: #cc0000">
                                 {{ request.user.username }}
                             </button>
-                                <ul class="dropdown-menu" style="position: absolute; left: 700px; background-color: #ea9999; border-color: #cc0000">
+                                <ul class="dropdown-menu" style=background-color: #ea9999; border-color: #cc0000">
                                     <li><a class="dropdown-item" href="{% url 'muj_profil' %}" style="color: white">Můj Profil</a></li>
                                     <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: white">Logout</a></li>
                                     <li><a class="dropdown-item" href="{% url 'vytvor_aukci' %}" style="color: white">Vytvořit aukci</a>
@@ -52,10 +52,10 @@
                                 </ul>
                         </div>
                     {% else %}
-                    <a class="nav-item nav-link active" href="{% url 'login' %}" style="margin-left: 800px; color: white">
+                    <a class="nav-item nav-link active" href="{% url 'login' %}" style="color: white">
                         Přihlášení
                     </a>
-                     <a class="nav-item nav-link active" href="{% url 'sign_up' %}" style="width: 200px; color: white">
+                     <a class="nav-item nav-link active" href="{% url 'sign_up' %}" style="color: white">
                         Registrace
                     </a>
                     {% endif %}
@@ -72,15 +72,14 @@
     {% endif %}
     <div class="container">
         <div class="jumbotron" style="background-color: #ea9999;">
-<!--            Bude potřeba vytvořit novou hlavní stránku aby se toto nezobrazovalo na všech urls-->
             {% block content %}
             <div class="jumbotron" style="background-color: #ea9999;">
         <h1>Vítejte na aukční stránce SDAukce</h1>
         <p>Prosím zaregistrujte se a začněte dražit!!</p>
+                <img src="{% static "aukcni_kladivko.webp" %}" style="border-radius: 200px; margin-left: 500px; width="400" height="250">
     </div>
             {% endblock %}
 
         </div>
-        <img src="{% static "aukcni_kladivko.webp" %}" style="border-radius: 200px; margin-left: 500px; width="650" height="500">
     </div>
 </body>

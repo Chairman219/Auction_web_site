@@ -21,7 +21,7 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView,
 from django.urls import path
 from auction.views import VytvorAukciView, hlavni_stranka, SeznamAukciView, aukcni_stranka, seznam_kategorii, \
     aukce_v_kategorii, SubmittableLoginView, SubmittablePasswordChangeView, SubmittablePasswordResetView, \
-    SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci, muj_profil, SignUpView, ohodnotit_aukci, sleduj_aukci, odhlasit_aukci
+    SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci, muj_profil, SignUpView, ohodnotit_aukci, sleduj_aukci, odhlasit_aukci, SmazatKategoriiView
 
 from auction.models import Aukce, Bid, Kategorie, Profile, Hodnoceni
 
@@ -47,10 +47,10 @@ urlpatterns = [
     path('aukce/<int:aukce_id>/', aukcni_stranka, name='aukcni_stranka'),
     path('aukce/vytvor/', VytvorAukciView.as_view(), name='vytvor_aukci'),
     path('aukce/<int:pk>/smazat/', SmazatAukciView.as_view(), name='smazat_aukci'),
-    # path('aukce/<int:aukce_id>/prihazeni/', prihazeni_aukce, name='prihazeni_aukce'),
     path('kategorie/', seznam_kategorii, name='seznam_kategorii'),
     path('kategorie/<int:kategorie_id>/', aukce_v_kategorii, name='aukce_v_kategorii'),
     path('kategorie/vytvorit/', VytvoritKategoriiView.as_view(), name='vytvorit_kategorii'),
+    path('kategorie/smazat/<int:pk>', SmazatKategoriiView.as_view(), name='smazat_kategorii'),
     path('vyhledavani/', vyhledavani_aukci, name='vyhledavani_aukci'),
     path('aukce/<int:aukce_id>/hodnotit/', ohodnotit_aukci, name='hodnotit_aukci'),
     path('aukce/<int:aukce_id>/sleduj/', sleduj_aukci, name='sleduj_aukci'),
