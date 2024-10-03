@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = "hlavni_stranka"
 LOGOUT_REDIRECT_URL = "login"
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Application definition
 

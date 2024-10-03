@@ -36,7 +36,7 @@ class BidForm(ModelForm):
 class AukceForm(ModelForm):
     class Meta:
         model = Aukce
-        fields = ['nazev', 'popis', 'kategorie', 'minimalni_prihoz', 'castka_kup_ted', 'datum_zacatku', 'datum_ukonceni']
+        fields = ['nazev', 'popis', 'kategorie', 'minimalni_prihoz', 'castka_kup_ted', 'datum_zacatku', 'datum_ukonceni', 'image']
 
 class AuctionSearchForm(Form):
     nazev = CharField(required=False)

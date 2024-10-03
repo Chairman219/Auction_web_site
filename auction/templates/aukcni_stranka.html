@@ -42,6 +42,9 @@
     <p>Lokalita: {{ aukce.lokalita }}</p>
     <p>Počet zobrazení: {{ aukce.pocet_zobrazeni }}</p>
 
+{% if aukce.image %}
+    <img src="{{ aukce.image.url }}" alt="Aukce obrázek" style="max-width: 100%; height: auto;">
+{% endif %}
 
     {% if request.user.is_authenticated %}
         <h2>Přihazování</h2>
@@ -124,4 +127,6 @@
 <a href="{% url 'hlavni_stranka' %}">Zpět na hlavní stránku</a>
 <a href="{% url 'seznam_aukci' %}">Zpět na seznam aukcí</a>
 </div>
+
+
 {% endblock %}

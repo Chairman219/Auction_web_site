@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.db.models import EmailField, SET_NULL
 from django.template.defaultfilters import default
 from django.utils import timezone
@@ -53,6 +54,7 @@ class Aukce(models.Model):
     vitez = ForeignKey(User, null=True, blank=True, on_delete=SET_NULL, related_name='vyhrane_aukce')
     status = CharField(max_length=10, choices=STATUS_CHOICES, default='ACTIVE')
     sledujici = ManyToManyField(User, related_name='sledovane_aukce', blank=True)
+    image = ImageField(upload_to='auction_images/', null=True, blank=True, validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])])
 
 
     def __str__(self):
@@ -78,6 +80,11 @@ class Aukce(models.Model):
         self.is_active = False
         self.datum_ukonceni = timezone.now()
         self.save()
+
+    def clean(self):
+        super().clean()
+        if self.datum_ukonceni < self.datum_zacatku:
+            raise ValidationError("Datum ukončení nemůže být dříve než datum začátku aukce.")
 
 
 
