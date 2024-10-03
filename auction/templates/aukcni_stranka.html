@@ -87,7 +87,7 @@
 <h2>Poslední příhozy</h2>
 <ul>
     {% for bid in bids %}
-        <li>{{ bid.uzivatel.username }}: přihodil {{ bid.castka }} Kč</li>
+        <li>{{ bid.uzivatel.username }}: přihodil {{ bid.castka }} Kč {{ aukce.bids.last.datum_prihozu|date:"d.m.Y H:i"  }}</li>
     {% empty %}
         <li>Žádné nabídky zatím.</li>
     {% endfor %}

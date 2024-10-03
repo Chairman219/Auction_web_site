@@ -13,3 +13,13 @@
     border-color: #cc0000;
     background-color: #ea9999;
 }
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    white-space: nowrap;
+}

@@ -14,6 +14,7 @@ User = get_user_model()
 
 class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
+    vyhrane_aukce = ManyToManyField('Aukce', related_name='vyhrane_aukce', blank=True)
     city = CharField(max_length=100)
     address = CharField(max_length=100)
 
@@ -65,6 +66,15 @@ class Aukce(models.Model):
         if timezone.now() > self.datum_ukonceni:
             self.is_active = False
             self.status = 'ENDED'
+
+            nejvyssi_prihoz = self.bids.order_by('-castka').first()
+            if nejvyssi_prihoz:
+                self.vitez = nejvyssi_prihoz.uzivatel
+                self.save()
+
+                profile = nejvyssi_prihoz.uzivatel.profile
+                profile.vyhrane_aukce.add(self)
+                profile.save()
 
 
     def save(self, *args, **kwargs):

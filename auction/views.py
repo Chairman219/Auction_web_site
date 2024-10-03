@@ -38,7 +38,7 @@ def muj_profil(request):
 
     aukce = Aukce.objects.filter(user=user, status='ACTIVE')
 
-    vyhrane_aukce = Aukce.objects.filter(vitez=request.user)
+    vyhrane_aukce = Aukce.objects.filter(Q(vitez=user) | Q(user=user,status='ENDED'))
 
 
     context = {
@@ -73,6 +73,8 @@ def aukcni_stranka(request, aukce_id):
     bids = aukce.bids.all()
     error_message = None
     success_message = None
+
+    form = BidForm()
 
     if aukce.status == 'ENDED':
         error_message = "Aukce již byla ukončena"
