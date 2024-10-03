@@ -1,3 +1,4 @@
+from datetime import timedelta
 from lib2to3.fixes.fix_input import context
 
 from django.contrib.auth import login
@@ -63,6 +64,20 @@ class SeznamAukciView(ListView):
     def get_queryset(self):
         # Filtruje aukce, které jsou aktuálně aktivní (datum začátku a ukončení)
         return Aukce.objects.filter(status='ACTIVE', datum_zacatku__lte=timezone.now(), datum_ukonceni__gte=timezone.now())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['ukoncene_aukce'] = Aukce.objects.filter(status='ENDED')
+
+        now = timezone.now()
+        context['skonceni_brzy_aukce'] = Aukce.objects.filter(
+            status = 'ACTIVE',
+            datum_ukonceni__gt=now,
+            datum_ukonceni__lt=now + timedelta(minutes=2)
+        )
+
+        return context
 
 
 def aukcni_stranka(request, aukce_id):
