@@ -3,21 +3,32 @@
 {% block title %}Seznam aktivních aukcí{% endblock %}
 
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'basci_style.css' %}">
+</head>
     <h1>Aktivní aukce</h1>
     {% if aktivni_aukce %}
-        <ul>
+        <div class="row">
             {% for aukce in aktivni_aukce %}
-            <li>
-                <h2>{{ aukce.nazev }}</h2>
-                <p>{{ aukce.popis|truncatewords:30 }}</p>
-                <p><strong>Minimální příhoz:</strong> {{ aukce.minimalni_prihoz }} Kč</p>
-                <p><strong>Datum začátku:</strong> {{ aukce.datum_zacatku }}</p>
-                <p><strong>Datum konce:</strong> {{ aukce.datum_ukonceni }}</p>
-                <a href="{% url 'aukcni_stranka' aukce.id %}">Detail aukce</a>
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Momentálně nejsou žádné aktivní aukce.</p>
+                <div class="col-md-6">
+                    <div class="card" style="margin-bottom: 20px">
+                        <div class="card-body">
+                            <h2 class="card-tittle">{{ aukce.nazev }}</h2>
+                            <p class="card-text">{{ aukce.popis|truncatewords:30 }}</p>
+                            <p><strong>Minimální příhoz:</strong> {{ aukce.minimalni_prihoz }} Kč</p>
+                            <p><strong>Datum začátku:</strong> {{ aukce.datum_zacatku }}</p>
+                            <p><strong>Datum konce:</strong> {{ aukce.datum_ukonceni }}</p>
+                            <a href="{% url 'aukcni_stranka' aukce.id %}">Detail aukce</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% if forloop.counter|divisibleby:2 %}
+                    </div>
+                    <div class="row">
+            {% endif %}
+        {% endfor %}
+                    </div>
+        <p>Momentálně nejsou aktivní další aukce.</p>
     {% endif %}
 {% endblock %}

@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="">
+    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: add img to create_auction, add valid for create_auction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/templates/aukcni_stranka.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/aukcni_stranka.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/templates/muj_profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/muj_profil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aukce/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aukce/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/seznam_aukci.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/seznam_aukci.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +106,8 @@
       <workItem from="1727705472718" duration="12886000" />
       <workItem from="1727768297646" duration="156000" />
       <workItem from="1727797920060" duration="4358000" />
-      <workItem from="1727940239439" duration="1536000" />
+      <workItem from="1727940239439" duration="4015000" />
+      <workItem from="1727947183886" duration="975000" />
     </task>
     <task id="LOCAL-00001" summary="doc: README.md - add seznam úkolů">
       <option name="closed" value="true" />
@@ -173,7 +173,31 @@
       <option name="project" value="LOCAL" />
       <updated>1727806196363</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: add function of following auctions">
+      <option name="closed" value="true" />
+      <created>1727942407159</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727942407159</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: add img to create_auction, add valid for create_auction">
+      <option name="closed" value="true" />
+      <created>1727944265954</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727944265954</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: add img to create_auction, add valid for create_auction">
+      <option name="closed" value="true" />
+      <created>1727944282514</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727944282514</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +248,9 @@
     <MESSAGE value="feat: changes for buy_now and display it in my profile site" />
     <MESSAGE value="feat: minor change in model Aukce" />
     <MESSAGE value="feat: update - admin.site.register(Hodnoceni)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update - admin.site.register(Hodnoceni)" />
+    <MESSAGE value="feat: add function of following auctions" />
+    <MESSAGE value="feat: add img to create_auction, add valid for create_auction" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add img to create_auction, add valid for create_auction" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/manage_py$views.coverage" NAME="views Coverage Results" MODIFIED="1727284408992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/auction" />

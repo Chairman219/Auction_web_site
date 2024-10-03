@@ -6,3 +6,10 @@
 .button-container form {
     margin: 0;
 }
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    border-color: #cc0000;
+    background-color: #ea9999;
+}

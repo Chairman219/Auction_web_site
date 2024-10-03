@@ -11,12 +11,12 @@ ZÁKLADNÍ SEZNAM ÚKOLŮ:
 - Hlavní funkce:
   - Hlavní stránka [x]
   - Aukce [x]
-  - Aukce a nákupy [ ]
-  - Uživatelský účet [ ]
+  - Aukce a nákupy [x]
+  - Uživatelský účet [x]
   - Kategorie [x]
   - Vyhledávání aukcí [x]
-  - Sledování aukcí [ ]
-  - Hodnocení transakcí [ ]
+  - Sledování aukcí [x]
+  - Hodnocení transakcí [x]
 - Důležité zprovoznit hlavní stránku a aukce s nákupy + uživatelský účet (základ). Poté se začít věnovat vyhledávání aukcí, sledování aukcí a hodnocení transakcí.
 
 2. ZÁKLAD
@@ -46,7 +46,7 @@ Uživatelský účet
 Detaily aukce 
 - název [x]
 - popis [x]
-- fotky (volitelné) [Maybe]
+- fotky (volitelné) [x]
 - kategorie [x]
 - minimální příhoz [x]
 - částka Kup teď (údaj zmizí v případě, že začne aukce) [x]

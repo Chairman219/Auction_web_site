@@ -72,10 +72,14 @@
     {% endif %}
     <div class="container">
         <div class="jumbotron" style="background-color: #ea9999;">
-            <h1>Vítejte na aukční stránce SDAukce</h1>
-            <p>Prosím zaregistrujte se a začněte dražit!!</p>
 <!--            Bude potřeba vytvořit novou hlavní stránku aby se toto nezobrazovalo na všech urls-->
-            {% block content %}{% endblock %}
+            {% block content %}
+            <div class="jumbotron" style="background-color: #ea9999;">
+        <h1>Vítejte na aukční stránce SDAukce</h1>
+        <p>Prosím zaregistrujte se a začněte dražit!!</p>
+    </div>
+            {% endblock %}
+
         </div>
         <img src="{% static "aukcni_kladivko.webp" %}" style="border-radius: 200px; margin-left: 500px; width="650" height="500">
     </div>
