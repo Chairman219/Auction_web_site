@@ -52,6 +52,7 @@ class Aukce(models.Model):
     is_active = BooleanField(default=True)
     vitez = ForeignKey(User, null=True, blank=True, on_delete=SET_NULL, related_name='vyhrane_aukce')
     status = CharField(max_length=10, choices=STATUS_CHOICES, default='ACTIVE')
+    sledujici = ManyToManyField(User, related_name='sledovane_aukce', blank=True)
 
 
     def __str__(self):

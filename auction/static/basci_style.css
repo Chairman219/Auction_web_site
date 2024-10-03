@@ -1,0 +1,8 @@
+.button-container {
+    display: flex;
+    gap: 750px;
+}
+
+.button-container form {
+    margin: 0;
+}

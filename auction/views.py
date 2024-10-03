@@ -34,14 +34,18 @@ class SubmittablePasswordResetView(PasswordResetView):
 def muj_profil(request):
     user = request.user
 
+    sledovane_aukce = user.sledovane_aukce.all()
+
     aukce = Aukce.objects.filter(user=user, status='ACTIVE')
 
     vyhrane_aukce = Aukce.objects.filter(vitez=request.user)
+
 
     context = {
         'profile': request.user.profile,
         'aukce': aukce,
         'vyhrane_aukce': vyhrane_aukce,
+        'sledovane_aukce': sledovane_aukce,
     }
 
     return render(
@@ -93,6 +97,7 @@ def aukcni_stranka(request, aukce_id):
                     bid.aukce = aukce
                     bid.uzivatel = request.user
                     bid.save()
+                    aukce.sledujici.add(request.user)
                     success_message = "Přihoz byl úspěšně zadán"
                     return redirect("aukcni_stranka", aukce_id=aukce_id)
             else:
@@ -191,3 +196,15 @@ def vyhledavani_aukci(request):
             aukce = aukce.filter(castka_kup_ted__gte=castka_kup_ted)
 
     return render(request, 'vyhledavani_aukci.html', {'form': form, 'aukce': aukce})
+
+@login_required
+def sleduj_aukci(request, aukce_id):
+    aukce = get_object_or_404(Aukce, id=aukce_id)
+    aukce.sledujici.add(request.user)
+    return redirect('aukcni_stranka', aukce_id=aukce_id)
+
+@login_required
+def odhlasit_aukci(request, aukce_id):
+    aukce = get_object_or_404(Aukce, id=aukce_id)
+    aukce.sledujici.remove(request.user)
+    return redirect('aukcni_stranka', aukce_id=aukce_id)

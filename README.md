@@ -67,8 +67,8 @@ Nákup (nejvyšší příhoz nebo Kup teď)
 - částka k zaplacení [x]
 
 Sledování aukce
-- aukce []
-- uživatel []
+- aukce [x]
+- uživatel [x]
 
 Hodnocení transakce (nákupu)
 - nákup [x]

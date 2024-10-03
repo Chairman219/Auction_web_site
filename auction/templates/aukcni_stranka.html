@@ -1,14 +1,33 @@
 {% extends "hlavni_stranka.html" %}
-
+{% load static %}
 {% block title %}{{ aukce.nazev }}{% endblock %}
 
 {% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'basci_style.css' %}">
+</head>
 
+<div class="button-container">
 {% if request.user == aukce.user or request.user.is_superuser %}
 <a href="{% url 'smazat_aukci' aukce.id %}">
     <button style="background-color: #cc0000; color: white; border-color: #ea9999">Smazat aukci</button>
 </a>
 {% endif %}
+
+    {% if request.user.is_authenticated %}
+    {% if request.user in aukce.sledujici.all %}
+        <form method="post" action="{% url 'odhlasit_aukci' aukce.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" style="background-color: #ea9999; border-color: #cc0000; color: white; border-radius: 10px">Přestat sledovat</button>
+        </form>
+    {% else %}
+        <form method="post" action="{% url 'sleduj_aukci' aukce.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" style="border-radius: 10px; background-color: #ea9999; border-color: #cc0000">Sledovat aukci</button>
+        </form>
+    {% endif %}
+    {% endif %}
+</div>
 
 <h1>{{ aukce.nazev }}</h1>
 <h4>Vytvořil uživatel: {{ aukce.user.username }}</h4>
@@ -86,9 +105,18 @@
         <li>Žádná hodnocení zatím.</li>
     {% endfor %}
 </ul>
+
+
+
 <div>
-{% if request.user or request.user.is_superuser %}
-<a href="{% url 'hodnotit_aukci' aukce.id %}"><button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999; margin-bottom: 50px">Přidat hodnocení a komentář</button></a>
+{% if request.user.is_authenticated or request.user.is_superuser %}
+<a href="{% url 'hodnotit_aukci' aukce.id %}">
+    <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999; margin-bottom: 50px">
+        Přidat hodnocení a komentář
+    </button>
+{% else %}
+    <p>Aby jste mohli přidávat hodnocení nebo komentáře tak je potřeba se <a href="{% url 'login' %}">přihlásit</a>.</p>
+</a>
 {% endif %}
 </div>
 

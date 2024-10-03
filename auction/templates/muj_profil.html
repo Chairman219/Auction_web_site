@@ -3,6 +3,8 @@
 {% block content %}
 <h1>Můj profil</h1>
 <a href="{% url 'password_change' %}">Změna hesla</a>
+
+
 <h2>Informace o uživateli</h2>
 <p><strong>Uživatelské jméno:</strong> {{ user.username }}</p>
 <p><strong>Město:</strong> {{ profile.city }}</p>
@@ -28,6 +30,22 @@
     </li>
     {% empty %}
     <p>Nevyhráli jste zatím žádnou aukci.</p>
+    {% endfor %}
+</ul>
+
+<h2>Aukce, které sleduji</h2>
+<ul>
+    {% for aukce in sledovane_aukce %}
+    <li>
+        <a href="{% url 'aukcni_stranka' aukce.id %}">{{ aukce.nazev }}</a> - Poslední příhoz:
+        {% if aukce.bids.last %}
+            {{ aukce.bids.last.uzivatel.username }}: {{ aukce.bids.last.castka }} Kč, {{ aukce.bids.last.datum_prihozu|date:"d.m.Y H:i" }}
+        {% else %}
+            Žádné příhozy zatím.
+        {% endif %}
+    </li>
+    {% empty %}
+    <p>Nesledujete žádné aukce.</p>
     {% endfor %}
 </ul>
 
