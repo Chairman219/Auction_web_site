@@ -26,7 +26,7 @@
 <ul>
     {% for aukce in vyhrane_aukce %}
     <li>
-        <a href="{% url 'aukcni_stranka' aukce.id %}">{{ aukce.nazev }}</a>
+        <a href="{% url 'aukcni_stranka' aukce.id %}">{{ aukce.nazev }} </a>Popis: {{ aukce.popis|truncatewords:30 }}
     </li>
     {% empty %}
     <p>Nevyhráli jste zatím žádnou aukci.</p>

@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: fix right function of auciton end">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/muj_profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/muj_profil.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auction/templates/seznam_aukci.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/seznam_aukci.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +107,7 @@
       <workItem from="1727797920060" duration="4358000" />
       <workItem from="1727940239439" duration="4015000" />
       <workItem from="1727947183886" duration="14831000" />
+      <workItem from="1728314399843" duration="875000" />
     </task>
     <task id="LOCAL-00001" summary="doc: README.md - add seznam úkolů">
       <option name="closed" value="true" />
