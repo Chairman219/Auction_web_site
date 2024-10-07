@@ -24,6 +24,7 @@ class Profile(Model):
 
 class Kategorie(Model):
     nazev = CharField(max_length=100)
+    logo = ImageField(upload_to='kategorie_loga/', blank=True, null=True)
 
     class Meta:
         permissions = [

@@ -162,7 +162,7 @@ def ohodnotit_aukci(request, aukce_id):
 class VytvoritKategoriiView(PermissionRequiredMixin, CreateView):
     model = Kategorie
     template_name = 'vytvorit_kategorii.html'
-    fields = ['nazev']
+    fields = ['nazev', 'logo']
     success_url = reverse_lazy('seznam_kategorii')
     permission_required = 'auction.muze_vytvorit_kategorii'
 

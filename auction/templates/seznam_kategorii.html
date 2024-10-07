@@ -12,7 +12,9 @@
                         <h5 class="card-title">
                             <a href="{% url 'aukce_v_kategorii' kategorie.id %}">{{ kategorie.nazev }}</a>
                         </h5>
-
+                        {% if kategorie.logo %}
+                            <img src="{{ kategorie.logo.url }}" alt="{{ kategorie.nazev }} logo" style="width: 100px; height: auto;">
+                        {% endif %}
                         {% if perms.auction.delete_kategorie %}
                             <a href="{% url 'smazat_kategorii' kategorie.id %}" type="submit" onclick="return confirm('Opravdu chcete smazat tuto kategorii?');">
                                 <button style="background-color: #cc0000; border-color: #ea9999; border-radius: 10px; color: white;">
