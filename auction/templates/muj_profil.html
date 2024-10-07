@@ -7,6 +7,8 @@
 
 <h2>Informace o uživateli</h2>
 <p><strong>Uživatelské jméno:</strong> {{ user.username }}</p>
+<p><strong>Jméno:</strong> {{ user.first_name }}</p>
+<p><strong>Přijmení:</strong> {{ user.last_name }}</p>
 <p><strong>Město:</strong> {{ profile.city }}</p>
 <p><strong>Adresa:</strong> {{ profile.address }}</p>
 <p style="margin-left: 750px"><strong>Datum vytvoření účtu:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
