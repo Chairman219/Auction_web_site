@@ -11,7 +11,7 @@ from auction.models import Bid, Aukce, Kategorie, Profile, Hodnoceni
 class SignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
-        fields = ['username', 'first_name', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email']
 
     city = CharField(widget=Textarea, min_length=1)
     adress = CharField(widget=Textarea, min_length=1)
