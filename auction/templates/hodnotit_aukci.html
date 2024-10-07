@@ -2,6 +2,7 @@
 
 {% block content %}
 <h1>Hodnotit aukci: {{ aukce.nazev }}</h1>
+<p>Informace k hodnocení: 1 (nejlepší) - 5 (nejhorší)</p>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
