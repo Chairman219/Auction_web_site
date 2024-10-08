@@ -9,12 +9,12 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from platformdirs import user_log_path
 from django.contrib import messages
 
 from auction.models import Aukce, Kategorie, Bid
-from aukce.forms import BidForm, AukceForm, AuctionSearchForm, SignUpForm, HodnoceniForm
+from aukce.forms import BidForm, AukceForm, AuctionSearchForm, SignUpForm, HodnoceniForm, KategorieForm
 
 
 class SignUpView(CreateView):
@@ -171,6 +171,13 @@ class SmazatKategoriiView(PermissionRequiredMixin, DeleteView):
     template_name = 'smazat_kategorii.html'
     success_url = reverse_lazy('seznam_kategorii')
     permission_required = 'auction.delete_kategorie'
+
+class UpravitKategoriiView(PermissionRequiredMixin, UpdateView):
+    template_name = 'form.html'
+    model = Kategorie
+    form_class = KategorieForm
+    success_url = reverse_lazy('seznam_kategorii')
+    permission_required = 'auction.update_kategorie'
 
 class VytvorAukciView(LoginRequiredMixin, CreateView):
     model = Aukce

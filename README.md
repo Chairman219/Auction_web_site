@@ -30,7 +30,7 @@ Základní entity (návrh)
 Kategorie:
 - název [x]
 - popis názvu [Nevím co přesně znamená.]
-- logo / náhled (volitelné) [Nechci.]
+- logo / náhled (volitelné) [x]
 
 Uživatelský účet
 - přihlašovací údaje (email užívaný pro komunikaci a notifikace) [x] 

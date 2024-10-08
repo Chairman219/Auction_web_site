@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Model
 from django.forms import EmailField, Textarea
 from django.db.transaction import atomic
 from django.forms import ModelForm, Form, ModelChoiceField, DateField, DecimalField
@@ -49,3 +50,8 @@ class HodnoceniForm(ModelForm):
     class Meta:
         model = Hodnoceni
         fields = ['rating_aukce', 'rating_prodejce', 'komentar_prodejce', 'rating_kupujiciho', 'komentar_kupujiciho']
+
+class KategorieForm(ModelForm):
+    class Meta:
+        model = Kategorie
+        fields = ['nazev','logo']

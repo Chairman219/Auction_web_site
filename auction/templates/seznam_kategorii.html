@@ -11,6 +11,7 @@
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="{% url 'aukce_v_kategorii' kategorie.id %}">{{ kategorie.nazev }}</a>
+
                         </h5>
                         {% if kategorie.logo %}
                             <img src="{{ kategorie.logo.url }}" alt="{{ kategorie.nazev }} logo" style="width: 100px; height: auto;">
@@ -21,6 +22,9 @@
                                 Smazat
                                 </button>
                             </a>
+                        <a href="{% url 'upravit_kategorii' kategorie.id %}">
+                            <button style="background-color: #ea9999; border-radius: 10px; color: white; border-color: #cc0000">Upravit kategorii</button>
+                        </a>
                         {% endif %}
                     </div>
                 </div>
