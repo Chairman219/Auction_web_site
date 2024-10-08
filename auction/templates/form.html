@@ -1,7 +1,7 @@
 {% extends "hlavni_stranka.html" %}
 
 {% block content %}
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>{{ form }}</table>
     <input type="submit" value="Submit" class="btn btn-primary" style="background-color: #cc0000; color: white; border-color: #ea9999; border-radius: 10px">
