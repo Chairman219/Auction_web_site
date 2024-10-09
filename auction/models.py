@@ -117,9 +117,9 @@ class Hodnoceni(Model):
     uzivatel = ForeignKey(User, on_delete=CASCADE)
 
     rating_aukce = IntegerField(choices=[(i, i) for i in range(1, 6)])
-    rating_prodejce = IntegerField(choices=[(i, i) for i in range(1, 6)])
+    rating_prodejce = IntegerField(choices=[(i, i) for i in range(1, 6)], blank=True, null=True)
     komentar_prodejce = TextField(blank=True, null=True)
-    rating_kupujiciho = IntegerField(choices=[(i, i) for i in range(1, 6)])
+    rating_kupujiciho = IntegerField(choices=[(i, i) for i in range(1, 6)], blank=True, null=True)
     komentar_kupujiciho = TextField(blank=True, null=True)
 
     def __str__(self):
