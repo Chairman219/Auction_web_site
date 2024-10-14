@@ -46,12 +46,16 @@ class SubmittablePasswordResetView(PasswordResetView):
 @login_required
 def muj_profil(request):
     user = request.user
-
     sledovane_aukce = user.sledovane_aukce.all()
-
     aukce = Aukce.objects.filter(user=user, status='ACTIVE')
-
     vyhrane_aukce = Aukce.objects.filter(Q(vitez=user) | Q(user=user,status='ENDED'))
+    dnesni_den = timezone.now().date()
+    pocet_aukci_dnes = Aukce.objects.filter(user=user, datum_zacatku__date=dnesni_den).count()
+
+    if not user.profile.is_premium:
+        zbyvajici_aukce = max(3 - pocet_aukci_dnes, 0)
+    else:
+        zbyvajici_aukce = None
 
 
     context = {
@@ -59,6 +63,7 @@ def muj_profil(request):
         'aukce': aukce,
         'vyhrane_aukce': vyhrane_aukce,
         'sledovane_aukce': sledovane_aukce,
+        'zbyvajici_aukce': zbyvajici_aukce,
     }
 
     return render(

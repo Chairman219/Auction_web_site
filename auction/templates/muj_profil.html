@@ -10,7 +10,7 @@
 <p><strong>Jméno:</strong> {{ user.first_name }}</p>
 <p><strong>Přijmení:</strong> {{ user.last_name }}</p>
 <p><strong>Město:</strong> {{ profile.city }}</p>
-<p><strong>Adresa:</strong> {{ profile.address }}</p>
+<p><strong>Adresa:</strong> {{ profile.adress }}</p>
 <p style="margin-left: 750px"><strong>Datum vytvoření účtu:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
 
 <p><strong>Status účtu</strong>
@@ -18,11 +18,14 @@
         Premium uživatel
     {% else %}
         Normální uživatel
+        <p>Zbývá vám vytvořit {{ zbyvajici_aukce }} aukcí dnes.</p>
         <form method="post" action="{% url 'upgrade_to_premium' %}">
             {% csrf_token %}
+            <label data-toggle="tooltip" title="Normální účet omezuje počet aukcí na 3 za den, zatímco premium účet umožňuje neomezený počet aukcí.">
             <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999">
                 Změnit účet na PREMIUM
             </button>
+            </label>
         </form>
     {% endif %}
 </p>
