@@ -4,7 +4,14 @@
     <h1>Registrace</h1>
     <form method="post">
         {% csrf_token %}
-        <table>{{ form }}</table>
+        <table>{{ form.as_p }}</table>
+        <div>
+            <label>Rozdíl mezi normálním a premium účtem:</label>
+            <ul>
+                <li><strong>Normální účet:</strong> Umožňuje vytvořit maximálně 3 aukce za den.</li>
+                <li><strong>Premium účet:</strong> Umožňuje vytvořit neomezené množství aukcí za den.</li>
+            </ul>
+        </div>
         <input type="submit" value="Registrovat" style="background-color: #cc0000; color: white; border-radius: 10px; border-color: #ea9999">
     </form>
 {% endblock %}

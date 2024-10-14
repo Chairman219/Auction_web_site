@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Model
-from django.forms import EmailField, Textarea
+from django.forms import EmailField, Textarea, ChoiceField
 from django.db.transaction import atomic
 from django.forms import ModelForm, Form, ModelChoiceField, DateField, DecimalField
 from django.forms import CharField
@@ -17,13 +17,25 @@ class SignUpForm(UserCreationForm):
     city = CharField(widget=Textarea, min_length=1)
     adress = CharField(widget=Textarea, min_length=1)
 
+    #Volba pro typ účtu
+    PREMIUM_CHOICES = [
+        (False, "Normální účet"),
+        (True, "Premium účet")
+    ]
+    is_premium = ChoiceField(choices=PREMIUM_CHOICES, label="Typ účtu")
+
+    class Meta(UserCreationForm.Meta):
+        fields = ['username', 'first_name', 'last_name', 'email']
+
     @atomic
     def save(self, commit=True):
         self.instance.is_active = True
         result = super().save(commit)
+
         city = self.cleaned_data['city']
         adress = self.cleaned_data['adress']
-        profile = Profile(city=city, adress=adress, user=result)
+        is_premium = self.cleaned_data['is_premium'] == 'True'
+        profile = Profile(city=city, adress=adress, user=result, is_premium=is_premium)
         if commit:
             profile.save()
         return result
@@ -49,7 +61,7 @@ class AuctionSearchForm(Form):
 class HodnoceniForm(ModelForm):
     class Meta:
         model = Hodnoceni
-        fields = ['rating_aukce', 'rating_prodejce', 'komentar_prodejce', 'rating_kupujiciho', 'komentar_kupujiciho']
+        fields = ['rating_aukce', 'rating_prodejce', 'komentar_k_aukci']
 
 class KategorieForm(ModelForm):
     class Meta:

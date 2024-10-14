@@ -13,6 +13,20 @@
 <p><strong>Adresa:</strong> {{ profile.address }}</p>
 <p style="margin-left: 750px"><strong>Datum vytvoření účtu:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
 
+<p><strong>Status účtu</strong>
+    {% if profile.is_premium %}
+        Premium uživatel
+    {% else %}
+        Normální uživatel
+        <form method="post" action="{% url 'upgrade_to_premium' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999">
+                Změnit účet na PREMIUM
+            </button>
+        </form>
+    {% endif %}
+</p>
+
 <h2>Moje aktivní aukce</h2>
 <ul>
     {% for aukce in aukce %}

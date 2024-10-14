@@ -7,7 +7,11 @@
     <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: fix category_update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auction/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/hlavni_stranka.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/accounts/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/accounts/sign_up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/muj_profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/muj_profil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aukce/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/aukce/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aukce/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aukce/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,14 +62,14 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "Python.views.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature__rating__fix",
+    "git-widget-placeholder": "develop",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -110,6 +114,9 @@
       <workItem from="1728314399843" duration="8761000" />
       <workItem from="1728402093107" duration="4194000" />
       <workItem from="1728487481384" duration="3351000" />
+      <workItem from="1728577343703" duration="1696000" />
+      <workItem from="1728734669590" duration="623000" />
+      <workItem from="1728918355953" duration="3020000" />
     </task>
     <task id="LOCAL-00001" summary="doc: README.md - add seznam úkolů">
       <option name="closed" value="true" />

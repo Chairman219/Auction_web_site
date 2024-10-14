@@ -22,6 +22,18 @@ class SignUpView(CreateView):
     template_name = "accounts/sign_up.html"
     success_url = reverse_lazy("hlavni_stranka")
 
+@login_required
+def upgrade_to_premium(request):
+    profile = request.user.profile
+    if not profile.is_premium:
+        profile.is_premium = True
+        profile.save()
+        messages.success(request, "Váš účet byl úspěšně upgradován na PREMIUM.")
+    else:
+        messages.error(request, "Jste již premium uživatel.")
+
+    return redirect("muj_profil")
+
 class SubmittableLoginView(LoginView):
     template_name = 'form.html'
 
@@ -186,6 +198,20 @@ class VytvorAukciView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('seznam_aukci')
 
     def form_valid(self, form):
+        user_profile = self.request.user.profile
+
+        #Kontrola zda uživatel není PREMIUM
+        if not user_profile.is_premium:
+            #Vyhledávání aukcí, které uživatel dnes vytvořil
+            dnesni_den = timezone.now().date()
+            pocet_aukci_dnes = Aukce.objects.filter(user=self.request.user, datum_zacatku__date=dnesni_den).count()
+
+            #Pokud uživatel vytvořil více než 3 aukce za den
+            if pocet_aukci_dnes >= 3:
+                form.add_error(None, "Normální uživatel může vytvořit maximálně 3 aukce za jeden den.")
+                return self.form_invalid(form)
+
+        #Pokud je uživatel PREMIUM, nebo limit není překročen
         form.instance.user = self.request.user
         form.instance.lokalita = self.request.user.profile.city
         return super().form_valid(form)

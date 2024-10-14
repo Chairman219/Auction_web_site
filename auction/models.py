@@ -16,7 +16,8 @@ class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
     vyhrane_aukce = ManyToManyField('Aukce', related_name='vyhrane_aukce', blank=True)
     city = CharField(max_length=100)
-    address = CharField(max_length=100)
+    adress = CharField(max_length=100)
+    is_premium = BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user.username}"
@@ -118,9 +119,7 @@ class Hodnoceni(Model):
 
     rating_aukce = IntegerField(choices=[(i, i) for i in range(1, 6)])
     rating_prodejce = IntegerField(choices=[(i, i) for i in range(1, 6)], blank=True, null=True)
-    komentar_prodejce = TextField(blank=True, null=True)
-    rating_kupujiciho = IntegerField(choices=[(i, i) for i in range(1, 6)], blank=True, null=True)
-    komentar_kupujiciho = TextField(blank=True, null=True)
+    komentar_k_aukci = TextField(blank=True, null=True)
 
     def __str__(self):
         return f"Hodnocení pro aukci: {self.aukce.nazev} od uživatel {self.uzivatel.username}"
