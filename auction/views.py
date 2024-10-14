@@ -132,6 +132,7 @@ def aukcni_stranka(request, aukce_id):
                     bid.uzivatel = request.user
                     bid.save()
                     aukce.sledujici.add(request.user)
+                    aukce.update_minimalni_prihoz(bid_amount, request.user)
                     success_message = "Přihoz byl úspěšně zadán"
                     return redirect("aukcni_stranka", aukce_id=aukce_id)
             else:

@@ -37,6 +37,10 @@
 
 {% if aukce.is_active %}
     <p>Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč</p>
+    <p>Aktuálně nejvyšší příhoz: {{ aukce.aktualni_castka }} Kč</p>
+    {% if aukce.nejvyssi_prihoz_uzivatel %}
+        <p>Nejvyšší přihoz podal uživatel: {{ aukce.nejvyssi_prihoz_uzivatel.username }}</p>
+    {% endif %}
     <p>Kategorie: {{ aukce.kategorie.nazev }}</p>
     <p>Částka kup teď: {{ aukce.castka_kup_ted }} Kč</p>
     <p>Lokalita: {{ aukce.lokalita }}</p>

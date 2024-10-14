@@ -52,16 +52,24 @@ class Aukce(models.Model):
     datum_zacatku = DateTimeField(default=timezone.now)
     datum_ukonceni = DateTimeField(default=timezone.now)
     pocet_zobrazeni = IntegerField(default=0)
-    user = ForeignKey(User, on_delete=CASCADE)
+    user = ForeignKey(User, on_delete=CASCADE, related_name='vytvorene_aukce')
     is_active = BooleanField(default=True)
     vitez = ForeignKey(User, null=True, blank=True, on_delete=SET_NULL, related_name='vyhrane_aukce')
     status = CharField(max_length=10, choices=STATUS_CHOICES, default='ACTIVE')
     sledujici = ManyToManyField(User, related_name='sledovane_aukce', blank=True)
     image = ImageField(upload_to='auction_images/', null=True, blank=True, validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])])
+    aktualni_castka = DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    nejvyssi_prihoz_uzivatel = ForeignKey(User, null=True, blank=True, on_delete=SET_NULL, related_name='nejvyssi_prihoz_aukce')
 
 
     def __str__(self):
         return self.nazev
+
+    def update_minimalni_prihoz(self, new_bid, user):
+        self.aktualni_castka = new_bid
+        self.minimalni_prihoz = new_bid #Minimální příhoz se nastaví na novou hodnotu nejvyššího příhozu
+        self.nejvyssi_prihoz_uzivatel = user
+        self.save()
 
 
     def ukoncit_aukci(self):
