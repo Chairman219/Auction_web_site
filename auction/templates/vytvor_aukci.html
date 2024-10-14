@@ -4,6 +4,13 @@
 
 {% block content %}
     <h1>Vytvořit novou aukci</h1>
+
+    {% if limit_message %}
+        <div class="alert alert-warning">
+            {{ limit_message|safe }}
+        </div>
+    {% endif %}
+
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
@@ -12,11 +19,11 @@
             <ul>
                 {% for field in form %}
                     {% for error in field.errors %}
-                        <li>{{ error }}</li>
+                        <li>{{ error|safe }}</li>
                     {% endfor %}
                 {% endfor %}
                 {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
+                    <li>{{ error|safe }}</li>
                 {% endfor %}
             </ul>
         {% endif %}

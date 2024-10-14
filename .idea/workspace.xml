@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: update add premium profile">
+    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: update nejvyssi_bid">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/templates/aukcni_stranka.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/aukcni_stranka.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auction/templates/vytvor_aukci.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/vytvor_aukci.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auction/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +112,7 @@
       <workItem from="1728487481384" duration="3351000" />
       <workItem from="1728577343703" duration="1696000" />
       <workItem from="1728734669590" duration="623000" />
-      <workItem from="1728918355953" duration="7538000" />
+      <workItem from="1728918355953" duration="8172000" />
     </task>
     <task id="LOCAL-00001" summary="doc: README.md - add seznam úkolů">
       <option name="closed" value="true" />
@@ -315,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728922821553</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="feat: update nejvyssi_bid">
+      <option name="closed" value="true" />
+      <created>1728926652326</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1728926652326</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,7 +387,8 @@
     <MESSAGE value="feat: fix category_update" />
     <MESSAGE value="feat: add premium profile" />
     <MESSAGE value="feat: update add premium profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update add premium profile" />
+    <MESSAGE value="feat: update nejvyssi_bid" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update nejvyssi_bid" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/manage_py$views.coverage" NAME="views Coverage Results" MODIFIED="1727284408992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/auction" />

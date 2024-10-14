@@ -12,7 +12,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from platformdirs import user_log_path
 from django.contrib import messages
-
+from django.urls import reverse
 from auction.models import Aukce, Kategorie, Bid
 from aukce.forms import BidForm, AukceForm, AuctionSearchForm, SignUpForm, HodnoceniForm, KategorieForm
 
@@ -214,8 +214,11 @@ class VytvorAukciView(LoginRequiredMixin, CreateView):
 
             #Pokud uživatel vytvořil více než 3 aukce za den
             if pocet_aukci_dnes >= 3:
-                form.add_error(None, "Normální uživatel může vytvořit maximálně 3 aukce za jeden den.")
-                return self.form_invalid(form)
+                premium_link = reverse('upgrade_to_premium')
+                limit_message = (f"Normální uživatel může vytvořit maximálně 3 aukce za jeden den. "
+                                 f"Pokud chcete vytvářet více jak tři aukce denně, "
+                                 f"změňte si svůj profil na<a href='{premium_link}'> Premium</a>.")
+                return self.render_to_response(self.get_context_data(form=form, limit_message=limit_message))
 
         #Pokud je uživatel PREMIUM, nebo limit není překročen
         form.instance.user = self.request.user
