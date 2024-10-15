@@ -22,7 +22,7 @@ from django.urls import path
 from auction.views import VytvorAukciView, hlavni_stranka, SeznamAukciView, aukcni_stranka, seznam_kategorii, \
     aukce_v_kategorii, SubmittableLoginView, SubmittablePasswordChangeView, SubmittablePasswordResetView, \
     SmazatAukciView, VytvoritKategoriiView, vyhledavani_aukci, muj_profil, SignUpView, ohodnotit_aukci, sleduj_aukci, \
-    odhlasit_aukci, SmazatKategoriiView, UpravitKategoriiView, upgrade_to_premium
+    odhlasit_aukci, SmazatKategoriiView, UpravitKategoriiView, upgrade_to_premium, premium_confirmation
 
 from auction.models import Aukce, Bid, Kategorie, Profile, Hodnoceni
 
@@ -57,6 +57,7 @@ urlpatterns = [
     path('aukce/<int:aukce_id>/hodnotit/', ohodnotit_aukci, name='hodnotit_aukci'),
     path('aukce/<int:aukce_id>/sleduj/', sleduj_aukci, name='sleduj_aukci'),
     path('aukce/<int:aukce_id>/odhlasit/', odhlasit_aukci, name='odhlasit_aukci'),
-    path('muj_profil/upgrade/', upgrade_to_premium, name='upgrade_to_premium')
+    path('muj_profil/upgrade/', upgrade_to_premium, name='upgrade_to_premium'),
+    path('premium-confirmation/', premium_confirmation, name='premium_confirmation'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

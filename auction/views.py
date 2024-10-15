@@ -22,6 +22,18 @@ class SignUpView(CreateView):
     template_name = "accounts/sign_up.html"
     success_url = reverse_lazy("hlavni_stranka")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        profile = self.object.profile
+
+        login(self.request, self.object) # Automatické přihlášení po registraci
+
+        # Pokud uživatel zvolil premium, přesměrujeme ho na stránku s potvrzením
+        if profile.waiting_for_premium_confirmation:
+            return redirect('premium_confirmation')
+
+        return response
+
 @login_required
 def upgrade_to_premium(request):
     profile = request.user.profile
@@ -33,6 +45,30 @@ def upgrade_to_premium(request):
         messages.error(request, "Jste již premium uživatel.")
 
     return redirect("muj_profil")
+
+@login_required
+def premium_confirmation(request):
+    profile = request.user.profile
+    # Pokud uživatel nečeká na potvrzení premium, přesměrujeme ho na hlavní stránku
+    if not profile.waiting_for_premium_confirmation:
+        return redirect('hlavni_stranka')
+
+    # Pokud uživatel souhlasí s přechodem na premium
+    if request.method == 'POST':
+        if 'confirm_premium' in request.POST:
+            profile.is_premium = True
+            profile.waiting_for_premium_confirmation = False
+            profile.save()
+            return redirect('muj_profil')
+
+        # Pokud uživatel odmítne premium, bude vytvořen normální účet
+        elif 'cancel_premium' in request.POST:
+            profile.is_premium = False
+            profile.waiting_for_premium_confirmation = False
+            profile.save()
+            return redirect('muj_profil')
+
+    return render(request, 'premium_confirmation.html', {'user': request.user})
 
 class SubmittableLoginView(LoginView):
     template_name = 'form.html'

@@ -1,0 +1,20 @@
+{% extends "hlavni_stranka.html" %}
+
+{% block title %}Potvrzení Premium účtu{% endblock %}
+
+{% block content %}
+    <h1>Přejít na Premium účet</h1>
+
+    <p><strong>Výhody Premium účtu:</strong></p>
+    <ul>
+        <li>Neomezené vytváření aukcí</li>
+    </ul>
+
+    <p>Cena: 99 Kč/měsíc</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="confirm_premium" class="btn btn-success">Souhlasím s přechodem na Premium</button>
+        <button type="submit" name="cancel_premium" class="btn btn-secondary">Ne, chci zůstat normální uživatel</button>
+    </form>
+{% endblock %}

@@ -35,7 +35,7 @@ class SignUpForm(UserCreationForm):
         city = self.cleaned_data['city']
         adress = self.cleaned_data['adress']
         is_premium = self.cleaned_data['is_premium'] == 'True'
-        profile = Profile(city=city, adress=adress, user=result, is_premium=is_premium)
+        profile = Profile(city=city, adress=adress, user=result, waiting_for_premium_confirmation=is_premium)
         if commit:
             profile.save()
         return result

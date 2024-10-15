@@ -18,6 +18,7 @@ class Profile(Model):
     city = CharField(max_length=100)
     adress = CharField(max_length=100)
     is_premium = BooleanField(default=False)
+    waiting_for_premium_confirmation = BooleanField(default=False)  # Indikace čekání na potvrzení
 
     def __str__(self):
         return f"{self.user.username}"
