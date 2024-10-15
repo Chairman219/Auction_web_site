@@ -28,7 +28,11 @@ class SignUpView(CreateView):
 
         login(self.request, self.object) # Automatické přihlášení po registraci
 
-        # Pokud uživatel zvolil premium, přesměrujeme ho na stránku s potvrzením
+        # Pokud uživatel zvolil premium při registraci
+        if form.cleaned_data['is_premium']:
+            profile.waiting_for_premium_confirmation = True
+            profile.save()
+
         if profile.waiting_for_premium_confirmation:
             return redirect('premium_confirmation')
 
@@ -37,14 +41,11 @@ class SignUpView(CreateView):
 @login_required
 def upgrade_to_premium(request):
     profile = request.user.profile
-    if not profile.is_premium:
-        profile.is_premium = True
-        profile.save()
-        messages.success(request, "Váš účet byl úspěšně upgradován na PREMIUM.")
-    else:
-        messages.error(request, "Jste již premium uživatel.")
 
-    return redirect("muj_profil")
+    profile.waiting_for_premium_confirmation = True
+    profile.save()
+
+    return redirect('premium_confirmation')
 
 @login_required
 def premium_confirmation(request):

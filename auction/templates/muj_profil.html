@@ -19,14 +19,9 @@
     {% else %}
         Normální uživatel
         <p>Zbývá vám vytvořit {{ zbyvajici_aukce }} aukcí dnes.</p>
-        <form method="post" action="{% url 'upgrade_to_premium' %}">
-            {% csrf_token %}
-            <label data-toggle="tooltip" title="Normální účet omezuje počet aukcí na 3 za den, zatímco premium účet umožňuje neomezený počet aukcí.">
-            <button type="submit" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999">
-                Změnit účet na PREMIUM
-            </button>
-            </label>
-        </form>
+        <a href="{% url 'upgrade_to_premium' %}" class="btn btn-primary" style="background-color: #cc0000; border-radius: 5px; border-color: #ea9999; color: white; padding: 10px 20px; text-decoration: none;">
+            Změnit účet na PREMIUM
+        </a>
     {% endif %}
 </p>
 

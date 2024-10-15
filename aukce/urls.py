@@ -57,7 +57,7 @@ urlpatterns = [
     path('aukce/<int:aukce_id>/hodnotit/', ohodnotit_aukci, name='hodnotit_aukci'),
     path('aukce/<int:aukce_id>/sleduj/', sleduj_aukci, name='sleduj_aukci'),
     path('aukce/<int:aukce_id>/odhlasit/', odhlasit_aukci, name='odhlasit_aukci'),
-    path('muj_profil/upgrade/', upgrade_to_premium, name='upgrade_to_premium'),
+    path('upgrade-to-premium', upgrade_to_premium, name='upgrade_to_premium'),
     path('premium-confirmation/', premium_confirmation, name='premium_confirmation'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
