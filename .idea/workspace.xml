@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: update premium profile - payment site">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/templates/muj_profil.html" beforeDir="false" afterPath="$PROJECT_DIR$/auction/templates/muj_profil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auction/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/auction/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="6f353c7a-8f0a-46a1-8078-0a050058060f" name="Changes" comment="feat: update premium profile - payment site - from muj profil" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -114,7 +110,7 @@
       <workItem from="1728734669590" duration="623000" />
       <workItem from="1728918355953" duration="10354000" />
       <workItem from="1728976547156" duration="2692000" />
-      <workItem from="1728992736680" duration="1684000" />
+      <workItem from="1728992736680" duration="2401000" />
     </task>
     <task id="LOCAL-00001" summary="doc: README.md - add seznam úkolů">
       <option name="closed" value="true" />
@@ -340,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728979171032</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: update premium profile - payment site - from muj profil">
+      <option name="closed" value="true" />
+      <created>1728995651546</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1728995651546</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,7 +388,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doc: README.md - add seznam úkolů" />
     <MESSAGE value="feat: vytvořen náhled hlavní stránky" />
     <MESSAGE value="feat: my_page" />
     <MESSAGE value="feat:" />
@@ -409,7 +412,8 @@
     <MESSAGE value="feat: update from normal profil to premium profil on create auction site" />
     <MESSAGE value="feat: update premium profile - payment site from registration" />
     <MESSAGE value="feat: update premium profile - payment site from registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update premium profile - payment site from registration" />
+    <MESSAGE value="feat: update premium profile - payment site - from muj profil" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update premium profile - payment site - from muj profil" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/manage_py$views.coverage" NAME="views Coverage Results" MODIFIED="1727284408992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/auction" />
