@@ -48,7 +48,6 @@ class Aukce(models.Model):
     kategorie = ForeignKey(Kategorie, on_delete=CASCADE)
     minimalni_prihoz = DecimalField(max_digits=10, decimal_places=2, default=0.0)
     castka_kup_ted = DecimalField(max_digits=10, decimal_places=2, default=0.0)
-    propagace = BooleanField(default=False)
     lokalita = CharField(max_length=100, default="")
     datum_zacatku = DateTimeField(default=timezone.now)
     datum_ukonceni = DateTimeField(default=timezone.now)

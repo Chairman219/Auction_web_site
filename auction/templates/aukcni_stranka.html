@@ -8,11 +8,11 @@
 </head>
 
 <div class="button-container">
-{% if request.user == aukce.user or request.user.is_superuser %}
-<a href="{% url 'smazat_aukci' aukce.id %}">
-    <button style="background-color: #cc0000; color: white; border-color: #ea9999">Smazat aukci</button>
-</a>
-{% endif %}
+    {% if request.user == aukce.user or request.user.is_superuser %}
+        <a href="{% url 'smazat_aukci' aukce.id %}">
+            <button style="background-color: #cc0000; color: white; border-color: #ea9999">Smazat aukci</button>
+        </a>
+    {% endif %}
 
     {% if request.user.is_authenticated %}
     {% if request.user in aukce.sledujici.all %}

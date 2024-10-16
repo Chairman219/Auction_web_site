@@ -282,6 +282,7 @@ def vyhledavani_aukci(request):
         minimalni_prihoz = form.cleaned_data.get('minimalni_prihoz')
         datum_zacatku = form.cleaned_data.get('datum_zacatku')
         castka_kup_ted = form.cleaned_data.get('castka_kup_ted')
+        lokalita = form.cleaned_data.get('lokalita')
 
         # Vytvoření základního querysetu
         aukce = Aukce.objects.all()  # Získá všechny aukce
@@ -296,6 +297,8 @@ def vyhledavani_aukci(request):
             aukce = aukce.filter(datum_zacatku__gte=datum_zacatku)
         if castka_kup_ted:
             aukce = aukce.filter(castka_kup_ted__gte=castka_kup_ted)
+        if lokalita:
+            aukce = aukce.filter(lokalita__icontains=lokalita)
 
     return render(request, 'vyhledavani_aukci.html', {'form': form, 'aukce': aukce})
 

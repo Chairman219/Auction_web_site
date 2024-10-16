@@ -57,6 +57,7 @@ class AuctionSearchForm(Form):
     minimalni_prihoz = DecimalField(required=False, min_value=0)
     castka_kup_ted = DecimalField(required=False, min_value=0)
     datum_zacatku = DateField(required=False)
+    lokalita = CharField(required=False)
 
 class HodnoceniForm(ModelForm):
     class Meta:

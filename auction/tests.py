@@ -13,7 +13,7 @@ from decimal import Decimal
 class SignUpViewTests(TestCase):
 
     def test_signup_with_premium_redirect(self):
-        """Test, zda registrace s volbou Premium účtu přesměruje na premium_confirmation."""
+        """Test, zda registrace s volbou Premium účtu přesměruje na premium_confirmation url."""
         response = self.client.post(reverse('sign_up'), {
             'username': 'testuser',
             'password1': 'testpassword',
@@ -37,7 +37,7 @@ class SignUpViewTests(TestCase):
         self.assertTrue(user.profile.waiting_for_premium_confirmation)
 
     def test_signup_with_normal_account(self):
-        """Test, zda registrace s normálním účtem nepřesměruje na premium_confirmation."""
+        """Test, zda registrace s normálním účtem nepřesměruje na premium_confirmation url."""
         response = self.client.post(reverse('sign_up'), {
             'username': 'testuser2',
             'password1': 'testpassword',
