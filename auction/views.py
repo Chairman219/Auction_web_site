@@ -29,7 +29,7 @@ class SignUpView(CreateView):
         login(self.request, self.object) # Automatické přihlášení po registraci
 
         # Pokud uživatel zvolil premium při registraci
-        if form.cleaned_data['is_premium']:
+        if form.cleaned_data['is_premium'] == 'True':
             profile.waiting_for_premium_confirmation = True
             profile.save()
 

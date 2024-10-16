@@ -41,7 +41,7 @@ Uživatelský účet
 - datum vytvoření účtu [x]
 - status účtu (AKTIVNÍ / NEAKTIVNÍ / BLOKOVANÝ) [x]
 - logotyp / náhled / avatar [Nechci.]
-- typ (BĚŽNÝ/PREMIUM) [Nechci.]
+- typ (BĚŽNÝ/PREMIUM) [X]
 
 Detaily aukce 
 - název [x]
