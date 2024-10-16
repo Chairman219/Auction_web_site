@@ -10,7 +10,7 @@
 <h2>Výsledky vyhledávání:</h2>
 <ul>
     {% for aukce in aukce %}
-        <li>{{ aukce.datum_zacatku }} - Název: {{ aukce.nazev }} - Ktegorie: {{ aukce.kategorie.nazev }} - Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč - Kup hned: {{ aukce.castka_kup_ted }}</li>
+        <li>{{ aukce.datum_zacatku }} - Název: {{ aukce.nazev }} - Ktegorie: {{ aukce.kategorie.nazev }} - Minimální příhoz: {{ aukce.minimalni_prihoz }} Kč - Kup hned: {{ aukce.castka_kup_ted }} - Lokalita: {{ aukce.lokalita }}</li>
     <a href="{% url 'aukcni_stranka' aukce.id %}">Detail</a>
     {% empty %}
         <li>Žádné aukce nebyly nalezeny.</li>
