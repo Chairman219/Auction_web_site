@@ -21,6 +21,7 @@ class Profile(Model):
     waiting_for_premium_confirmation = BooleanField(default=False)  # Indikace čekání na potvrzení
 
     def __str__(self):
+        # Vrací uživatelské jméno profilu
         return f"{self.user.username}"
 
 
@@ -29,11 +30,13 @@ class Kategorie(Model):
     logo = ImageField(upload_to='kategorie_loga/', blank=True, null=True)
 
     class Meta:
+        # Speciální oprávnění pro vytváření kategorií
         permissions = [
             ("muze_vytvorit_kategorii", "Může vytvářet kategorie")
         ]
 
     def __str__(self):
+        # Vrací název kategorie
         return self.nazev
 
 class Aukce(models.Model):
@@ -63,9 +66,11 @@ class Aukce(models.Model):
 
 
     def __str__(self):
+        # Vrací název aukce
         return self.nazev
 
     def update_minimalni_prihoz(self, new_bid, user):
+        # Aktualizuje minimální příhoz a nastaví uživatele s nejvyšší příhozem
         self.aktualni_castka = new_bid
         self.minimalni_prihoz = new_bid #Minimální příhoz se nastaví na novou hodnotu nejvyššího příhozu
         self.nejvyssi_prihoz_uzivatel = user
@@ -73,6 +78,7 @@ class Aukce(models.Model):
 
 
     def ukoncit_aukci(self):
+        # Ukončí aukci, pokud vypršel její čas a nastaví vítěze na uživatele s nejvyšším příhozem
         if timezone.now() > self.datum_ukonceni:
             self.is_active = False
             self.status = 'ENDED'
@@ -88,6 +94,7 @@ class Aukce(models.Model):
 
 
     def save(self, *args, **kwargs):
+        # Při uložení kontroluje, zda má být aukce ukončena
         if self.status == 'ACTIVE':
             self.ukoncit_aukci()
 
@@ -95,6 +102,7 @@ class Aukce(models.Model):
 
 
     def kup_hned(self, user):
+        # Nastaví aukci na "Zakoupená" a ukončí ji, pokud uživatel zvolí možnost "Kup hned"
         self.vitez = user
         self.status = 'BOUGHT'
         self.is_active = False
@@ -102,6 +110,7 @@ class Aukce(models.Model):
         self.save()
 
     def clean(self):
+        # Ověřuje, že datum ukončení není před datem zahájení aukce
         super().clean()
         if self.datum_ukonceni < self.datum_zacatku:
             raise ValidationError("Datum ukončení nemůže být dříve než datum začátku aukce.")
@@ -115,9 +124,11 @@ class Bid(Model):
     datum_prihozu = DateTimeField(auto_now_add=True)
 
     def __str__(self):
+        # Vrací informace o příhozu (uživatelské jméno a částku)
         return f"{self.uzivatel.username} - {self.castka} Kč"
 
     def clean(self):
+        # Ověřuje, že částka příhozu je kladná hodnota
         if self.castka <= 0:
             raise ValidationError('Příhoz musí být kladné číslo.')
 
@@ -130,4 +141,5 @@ class Hodnoceni(Model):
     komentar_k_aukci = TextField(blank=True, null=True)
 
     def __str__(self):
+        # Vrací textovou název hodnocení a uživatele který hodnocení zadal
         return f"Hodnocení pro aukci: {self.aukce.nazev} od uživatel {self.uzivatel.username}"

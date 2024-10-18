@@ -23,6 +23,7 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("hlavni_stranka")
 
     def form_valid(self, form):
+        # Po validaci registrace uživatele se automaticky přihlásí a zkontroluje, zda zvolil Premium účet
         response = super().form_valid(form)
         profile = self.object.profile
 
@@ -33,6 +34,7 @@ class SignUpView(CreateView):
             profile.waiting_for_premium_confirmation = True
             profile.save()
 
+        # Přesměrování na stránku potvrzení Premium účtu, pokud uživatel čeká na potvrzení
         if profile.waiting_for_premium_confirmation:
             return redirect('premium_confirmation')
 
@@ -40,6 +42,7 @@ class SignUpView(CreateView):
 
 @login_required
 def upgrade_to_premium(request):
+    # Umožňuje uživateli přejít na Premium účet tím, že nastaví příznak čekání na potvrzení
     profile = request.user.profile
 
     profile.waiting_for_premium_confirmation = True
@@ -72,16 +75,20 @@ def premium_confirmation(request):
     return render(request, 'premium_confirmation.html', {'user': request.user})
 
 class SubmittableLoginView(LoginView):
+    # Zobrazení přihlašovacího formuláře s upravenou šablonou
     template_name = 'form.html'
 
 class SubmittablePasswordChangeView(PasswordChangeView):
+    # Zobrazení formuláře pro změnu hesla
     template_name = 'accounts/change_password.html'
 
 class SubmittablePasswordResetView(PasswordResetView):
+    # Zobrazení formuláře pro resetování hesla
     template_name = "accounts/reset_password.html"
 
 @login_required
 def muj_profil(request):
+    # Zobrazuje profil uživatele a jeho aukce. U normálního účtu se zobrazuje zbývající počet aukcí, které může vytvořit.
     user = request.user
     sledovane_aukce = user.sledovane_aukce.all()
     aukce = Aukce.objects.filter(user=user, status='ACTIVE')
@@ -89,6 +96,7 @@ def muj_profil(request):
     dnesni_den = timezone.now().date()
     pocet_aukci_dnes = Aukce.objects.filter(user=user, datum_zacatku__date=dnesni_den).count()
 
+    # Zbývající počet aukcí pro normální uživatele (max 3 denně)
     if not user.profile.is_premium:
         zbyvajici_aukce = max(3 - pocet_aukci_dnes, 0)
     else:
@@ -108,6 +116,7 @@ def muj_profil(request):
     )
 
 def hlavni_stranka(request):
+    # Zobrazuje hlavní stránku aplikace
     return render(request, 'hlavni_stranka.html')
 
 class SeznamAukciView(ListView):
@@ -120,6 +129,7 @@ class SeznamAukciView(ListView):
         return Aukce.objects.filter(status='ACTIVE', datum_zacatku__lte=timezone.now(), datum_ukonceni__gte=timezone.now())
 
     def get_context_data(self, **kwargs):
+        # Přidává do kontextu ukončené aukce a aukce, které brzy skončí
         context = super().get_context_data(**kwargs)
 
         context['ukoncene_aukce'] = Aukce.objects.filter(status='ENDED')
@@ -135,6 +145,7 @@ class SeznamAukciView(ListView):
 
 
 def aukcni_stranka(request, aukce_id):
+    # Zobrazuje detail aukce a umožňuje uživatelům přihodit nebo koupit aukci ihned
     aukce = get_object_or_404(Aukce, id=aukce_id)
     aukce.pocet_zobrazeni += 1
     aukce.save()
@@ -150,6 +161,7 @@ def aukcni_stranka(request, aukce_id):
 
     elif request.method == 'POST':
         if 'koupit_hned' in request.POST:
+            # Zpracování možnosti "Kup hned"
             if aukce.status == 'ACTIVE':
                 aukce.kup_hned(request.user)
                 success_message = "Úspěšně jste zakoupili předmět."
@@ -158,6 +170,7 @@ def aukcni_stranka(request, aukce_id):
                 error_message = "Aukce již není aktivní."
 
         else:
+            # Zpracování příhozu
             form = BidForm(request.POST)
             if form.is_valid():
                 bid_amount = form.cleaned_data['castka']
@@ -185,19 +198,20 @@ def aukcni_stranka(request, aukce_id):
         'success_message': success_message,
     })
 
-# zobrazení všech kategorií
 def seznam_kategorii(request):
+    # Zobrazuje seznam všech kategorií
     kategorie = Kategorie.objects.all()
     return render(request, 'seznam_kategorii.html', {'kategorie': kategorie})
 
-# zobrazení aukcí v konkrétních kategorií
 def aukce_v_kategorii(request, kategorie_id):
+    # Zobrazuje aukce ve vybrané kategorii
     kategorie = get_object_or_404(Kategorie, id=kategorie_id)
     aukce_v_kategorii = Aukce.objects.filter(kategorie=kategorie)
     return render(request, 'aukce_v_kategorii.html', {'aukce': aukce_v_kategorii, 'kategorie': kategorie})
 
 @login_required
 def ohodnotit_aukci(request, aukce_id):
+    # Umožňuje uživatelům přidat hodnocení k aukci
     aukce = get_object_or_404(Aukce, id=aukce_id)
 
     if request.method == 'POST':
@@ -215,6 +229,7 @@ def ohodnotit_aukci(request, aukce_id):
 
 
 class VytvoritKategoriiView(PermissionRequiredMixin, CreateView):
+    # Umožňuje uživatelům s oprávněním vytvořit novou kategorii
     model = Kategorie
     template_name = 'vytvorit_kategorii.html'
     fields = ['nazev', 'logo']
@@ -222,12 +237,14 @@ class VytvoritKategoriiView(PermissionRequiredMixin, CreateView):
     permission_required = 'auction.muze_vytvorit_kategorii'
 
 class SmazatKategoriiView(PermissionRequiredMixin, DeleteView):
+    # Umožňuje uživatelům s oprávněním smazat kategorii
     model = Kategorie
     template_name = 'smazat_kategorii.html'
     success_url = reverse_lazy('seznam_kategorii')
     permission_required = 'auction.delete_kategorie'
 
 class UpravitKategoriiView(PermissionRequiredMixin, UpdateView):
+    # Umožňuje uživatelům s oprávněním upravit kategorii
     template_name = 'form.html'
     model = Kategorie
     form_class = KategorieForm
@@ -235,15 +252,15 @@ class UpravitKategoriiView(PermissionRequiredMixin, UpdateView):
     permission_required = 'auction.update_kategorie'
 
 class VytvorAukciView(LoginRequiredMixin, CreateView):
+    # Umožňuje uživatelům vytvořit aukci, přičemž normální uživatelé mohou vytvořit maximálně 3 aukce denně
     model = Aukce
     form_class = AukceForm
     template_name = 'vytvor_aukci.html'
     success_url = reverse_lazy('seznam_aukci')
 
     def form_valid(self, form):
+        # Kontroluje, zda uživatel není PREMIUM a zda nepřekročil denní limit aukcí
         user_profile = self.request.user.profile
-
-        #Kontrola zda uživatel není PREMIUM
         if not user_profile.is_premium:
             #Vyhledávání aukcí, které uživatel dnes vytvořil
             dnesni_den = timezone.now().date()
@@ -263,18 +280,20 @@ class VytvorAukciView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 class SmazatAukciView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    # Umožňuje uživatelům smazat jejich aukce, pokud jsou vlastníky nebo administrátory
     model = Aukce
     template_name = 'smazat_aukci.html'
     success_url = reverse_lazy('seznam_aukci')
 
     def test_func(self):
+        # Aukci může smazat pouze uživatel který ji vytvořil nebo admin
         aukce = self.get_object()
-        # Aukci může smazat pouze uživatel který ji vytvořil nebo admin,
         return self.request.user == aukce.user or self.request.user.is_superuser
 
 def vyhledavani_aukci(request):
+    # Umožňuje uživatelům vyhledávat aukce podle různých kritérií (název, kategorie, lokalita, atd.)
     form = AuctionSearchForm(request.GET or None)
-    aukce = Aukce.objects.none()  # Prázdný queryset
+    aukce = Aukce.objects.none()
 
     if form.is_valid():
         nazev = form.cleaned_data.get('nazev')
@@ -283,8 +302,6 @@ def vyhledavani_aukci(request):
         datum_zacatku = form.cleaned_data.get('datum_zacatku')
         castka_kup_ted = form.cleaned_data.get('castka_kup_ted')
         lokalita = form.cleaned_data.get('lokalita')
-
-        # Vytvoření základního querysetu
         aukce = Aukce.objects.all()  # Získá všechny aukce
 
         if nazev:
@@ -303,12 +320,14 @@ def vyhledavani_aukci(request):
     return render(request, 'vyhledavani_aukci.html', {'form': form, 'aukce': aukce})
 
 @login_required
+# Umožňuje uživatelům sledovat aukci
 def sleduj_aukci(request, aukce_id):
     aukce = get_object_or_404(Aukce, id=aukce_id)
     aukce.sledujici.add(request.user)
     return redirect('aukcni_stranka', aukce_id=aukce_id)
 
 @login_required
+# Umožňuje uživatelům odhlásit se z odběru sledování aukce
 def odhlasit_aukci(request, aukce_id):
     aukce = get_object_or_404(Aukce, id=aukce_id)
     aukce.sledujici.remove(request.user)

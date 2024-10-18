@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Vytvořit kategorii</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-success" style="border-color: #ea9999; background-color: #cc0000; border-radius: 10px; color: white">Vytvořit</button>

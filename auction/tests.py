@@ -13,7 +13,7 @@ from decimal import Decimal
 class SignUpViewTests(TestCase):
 
     def test_signup_with_premium_redirect(self):
-        """Test, zda registrace s volbou Premium účtu přesměruje na premium_confirmation url."""
+        # Testuje registraci nového uživatele s volbou Premium účtu
         response = self.client.post(reverse('sign_up'), {
             'username': 'testuser',
             'password1': 'testpassword',
@@ -26,7 +26,7 @@ class SignUpViewTests(TestCase):
             'is_premium': 'True'
         })
 
-        # Ověření, že byl uživatel přesměrován na premium_confirmation
+        # Ověří, že registrace přesměruje na stránku pro potvrzení Premium účtu
         self.assertRedirects(response, reverse('premium_confirmation'))
 
         # Ověření, že byl vytvořen uživatelský profil
@@ -37,7 +37,7 @@ class SignUpViewTests(TestCase):
         self.assertTrue(user.profile.waiting_for_premium_confirmation)
 
     def test_signup_with_normal_account(self):
-        """Test, zda registrace s normálním účtem nepřesměruje na premium_confirmation url."""
+        # Testuje registraci nového uživatele s normálním účtem (bez Premium)
         response = self.client.post(reverse('sign_up'), {
             'username': 'testuser2',
             'password1': 'testpassword',
@@ -60,12 +60,12 @@ class SignUpViewTests(TestCase):
 
 class PremiumConfirmationViewTests(TestCase):
     def setUp(self):
-        """Před každým testem vytvoříme uživatele s profilem čekajícím na potvrzení Premium účtu."""
+        # Vytváří uživatele a profil před spuštěním každého testu
         self.user = User.objects.create_user(username='premiumuser', password='testpassword')
         self.profile = Profile.objects.create(user=self.user, city='TestCity', adress='TestAdress', waiting_for_premium_confirmation=True)
 
     def test_confirm_premium(self):
-        """Test pro potvrzení Premium účtu."""
+        # Testuje scénář, kdy uživatel potvrdí přechod na Premium účet
         self.client.login(username='premiumuser', password='testpassword')
         response = self.client.post(reverse('premium_confirmation'), {'confirm_premium': 'true'})
 
@@ -78,7 +78,7 @@ class PremiumConfirmationViewTests(TestCase):
         self.assertFalse(self.profile.waiting_for_premium_confirmation)
 
     def test_cancel_premium(self):
-        """Test pro zrušení Premium účtu."""
+        # Testuje scénář, kdy uživatel odmítne přechod na Premium účet
         self.client.login(username='premiumuser', password='testpassword')
         response = self.client.post(reverse('premium_confirmation'), {'cancel_premium': 'true'})
 
@@ -92,7 +92,7 @@ class PremiumConfirmationViewTests(TestCase):
 
 class AukceModelTests(TestCase):
     def setUp(self):
-        """Před každým testem vytvoříme uživatele, kategorii a aukci."""
+        # Vytváří uživatele, kategorii a aukci před spuštěním každého testu
         self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.kategorie = Kategorie.objects.create(nazev="TestKategorie")
         self.aukce = Aukce.objects.create(
@@ -106,7 +106,7 @@ class AukceModelTests(TestCase):
         )
 
     def test_update_minimalni_prihoz(self):
-        """Test pro aktualizaci minimálního příhozu."""
+        # Testuje aktualizaci minimálního příhozu po novém příhozu
         new_bid = Decimal('150.00')
         self.aukce.update_minimalni_prihoz(new_bid, self.user)
 
